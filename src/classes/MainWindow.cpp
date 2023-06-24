@@ -3,6 +3,11 @@
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     ui.setupUi(this);
+
+    // The code below is to access an item from the GUI
+    // and then to disable it
+    QAction* loginButton = this->ui.actionLogin;
+    (*loginButton).setEnabled(false);
 }
 
 MainWindow::~MainWindow() {
