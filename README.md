@@ -1,0 +1,1 @@
+This is the frontend of the desktop application Food Organizer, developed with QT5, CMake and C++.
