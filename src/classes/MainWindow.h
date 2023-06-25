@@ -17,7 +17,7 @@ class MainWindow : public QMainWindow {
         void LogoutMenuClicked();
         void ExitMenuClicked();
         void SettingsMenuClicked();
-        void MainPageMenuClicked();
+        void DashboardMenuClicked();
         void WeeklyPlannerMenuClicked();
         void StorageMenuClicked();
         void FinancesMenuClicked();

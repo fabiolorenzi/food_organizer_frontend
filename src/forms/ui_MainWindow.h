@@ -19,7 +19,7 @@ public:
     QAction *actionLogout;
     QAction *actionExit;
     QAction *actionSettings;
-    QAction *actionMain_Page;
+    QAction *actionDashboard;
     QAction *actionWeekly_Planner;
     QAction *actionStorage;
     QAction *actionFinances;
@@ -45,8 +45,8 @@ public:
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
         actionSettings = new QAction(MainWindow);
         actionSettings->setObjectName(QString::fromUtf8("actionSettings"));
-        actionMain_Page = new QAction(MainWindow);
-        actionMain_Page->setObjectName(QString::fromUtf8("actionMain_Page"));
+        actionDashboard = new QAction(MainWindow);
+        actionDashboard->setObjectName(QString::fromUtf8("actionDashboard"));
         actionWeekly_Planner = new QAction(MainWindow);
         actionWeekly_Planner->setObjectName(QString::fromUtf8("actionWeekly_Planner"));
         actionStorage = new QAction(MainWindow);
@@ -83,6 +83,7 @@ public:
         menuFile->addSeparator();
         menuFile->addAction(actionExit);
         menuEdit->addAction(actionSettings);
+        menuView->addAction(actionDashboard);
         menuView->addAction(actionWeekly_Planner);
         menuView->addAction(actionStorage);
         menuView->addAction(actionFinances);
@@ -93,7 +94,7 @@ public:
         QObject::connect(actionLogout, SIGNAL(triggered()), MainWindow, SLOT(LogoutMenuClicked()));
         QObject::connect(actionExit, SIGNAL(triggered()), MainWindow, SLOT(ExitMenuClicked()));
         QObject::connect(actionSettings, SIGNAL(triggered()), MainWindow, SLOT(SettingsMenuClicked()));
-        QObject::connect(actionMain_Page, SIGNAL(triggered()), MainWindow, SLOT(MainPageMenuClicked()));
+        QObject::connect(actionDashboard, SIGNAL(triggered()), MainWindow, SLOT(DashboardMenuClicked()));
         QObject::connect(actionWeekly_Planner, SIGNAL(triggered()), MainWindow, SLOT(WeeklyPlannerMenuClicked()));
         QObject::connect(actionStorage, SIGNAL(triggered()), MainWindow, SLOT(StorageMenuClicked()));
         QObject::connect(actionFinances, SIGNAL(triggered()), MainWindow, SLOT(FinancesMenuClicked()));
@@ -109,7 +110,7 @@ public:
         actionLogout->setText(QCoreApplication::translate("MainWindow", "Logout", nullptr));
         actionExit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
         actionSettings->setText(QCoreApplication::translate("MainWindow", "Settings", nullptr));
-        actionMain_Page->setText(QCoreApplication::translate("MainWindow", "Main Page", nullptr));
+        actionDashboard->setText(QCoreApplication::translate("MainWindow", "Dashboard", nullptr));
         actionWeekly_Planner->setText(QCoreApplication::translate("MainWindow", "Weekly Planner", nullptr));
         actionStorage->setText(QCoreApplication::translate("MainWindow", "Storage", nullptr));
         actionFinances->setText(QCoreApplication::translate("MainWindow", "Finances", nullptr));

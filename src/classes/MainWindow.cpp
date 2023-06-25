@@ -17,6 +17,7 @@ void MainWindow::UpdateMainWindow() {
     QAction* loginButton = this->ui.actionLogin;
     QAction* logoutButton = this->ui.actionLogout;
     QAction* settingsButton = this->ui.actionSettings;
+    QAction* dashboardButton = this->ui.actionDashboard;
     QAction* weeklyPlannerButton = this->ui.actionWeekly_Planner;
     QAction* storageButton = this->ui.actionStorage;
     QAction* financesButton = this->ui.actionFinances;
@@ -28,6 +29,7 @@ void MainWindow::UpdateMainWindow() {
         (*loginButton).setEnabled(false);
         (*logoutButton).setEnabled(true);
         (*settingsButton).setEnabled(true);
+        (*dashboardButton).setEnabled(true);
         (*weeklyPlannerButton).setEnabled(true);
         (*storageButton).setEnabled(true);
         (*financesButton).setEnabled(true);
@@ -35,6 +37,7 @@ void MainWindow::UpdateMainWindow() {
         (*loginButton).setEnabled(true);
         (*logoutButton).setEnabled(false);
         (*settingsButton).setEnabled(false);
+        (*dashboardButton).setEnabled(false);
         (*weeklyPlannerButton).setEnabled(false);
         (*storageButton).setEnabled(false);
         (*financesButton).setEnabled(false);
@@ -65,9 +68,9 @@ void MainWindow::SettingsMenuClicked() {
     msg.exec();
 }
 
-void MainWindow::MainPageMenuClicked() {
+void MainWindow::DashboardMenuClicked() {
     QMessageBox msg;
-    msg.setText("Main page menu");
+    msg.setText("Dashboard menu");
     msg.exec();
 }
 
