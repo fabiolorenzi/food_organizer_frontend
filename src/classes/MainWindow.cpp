@@ -1,17 +1,30 @@
 #include <QtWidgets/QMessageBox>
+#include <fstream>
+#include <iostream>
 #include "MainWindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     ui.setupUi(this);
-
-    // The code below is to access an item from the GUI
-    // and then to disable it
-    QAction* loginButton = this->ui.actionLogin;
-    (*loginButton).setEnabled(false);
+    UpdateMainWindow();
 }
 
 MainWindow::~MainWindow() {
     delete this;
+}
+
+void MainWindow::UpdateMainWindow() {
+    QAction* loginButton = this->ui.actionLogin;
+    QAction* logoutButton = this->ui.actionLogout;
+    QAction* settingsButton = this->ui.actionSettings;
+    QAction* weeklyPlannerButton = this->ui.actionWeekly_Planner;
+
+    std::ifstream authFile;
+    authFile.open("build/auth.txt");
+    if (authFile.is_open()) {
+        (*loginButton).setEnabled(false);
+    } else {
+        (*loginButton).setEnabled(true);
+    };
 }
 
 void MainWindow::LoginMenuClicked() {
