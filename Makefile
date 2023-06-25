@@ -53,13 +53,11 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = src/main.cpp \
-		build/food_organizer_autogen/mocs_compilation.cpp \
 		src/classes/InitialWidget.cpp \
 		src/classes/MainWindow.cpp \
 		build/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp moc_InitialWidget.cpp \
 		moc_MainWindow.cpp
 OBJECTS       = main.o \
-		mocs_compilation.o \
 		InitialWidget.o \
 		MainWindow.o \
 		CMakeCXXCompilerId.o \
@@ -128,7 +126,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -151,7 +148,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		src/classes/MainWindow.h \
 		src/forms/ui_InitialWidget.h \
 		src/forms/ui_MainWindow.h src/main.cpp \
-		build/food_organizer_autogen/mocs_compilation.cpp \
 		src/classes/InitialWidget.cpp \
 		src/classes/MainWindow.cpp \
 		build/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp
@@ -229,7 +225,6 @@ Makefile: food_organizer_frontend.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linu
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -313,7 +308,6 @@ Makefile: food_organizer_frontend.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linu
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -349,7 +343,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents src/classes/InitialWidget.h src/classes/MainWindow.h src/forms/ui_InitialWidget.h src/forms/ui_MainWindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents src/main.cpp build/food_organizer_autogen/mocs_compilation.cpp src/classes/InitialWidget.cpp src/classes/MainWindow.cpp build/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents src/main.cpp src/classes/InitialWidget.cpp src/classes/MainWindow.cpp build/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -413,14 +407,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 main.o: src/main.cpp src/classes/MainWindow.h \
 		src/forms/ui_MainWindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o src/main.cpp
-
-mocs_compilation.o: build/food_organizer_autogen/mocs_compilation.cpp build/food_organizer_autogen/GSBBHRG4DN/moc_InitialWidget.cpp \
-		src/classes/InitialWidget.h \
-		src/forms/ui_InitialWidget.h \
-		build/food_organizer_autogen/GSBBHRG4DN/moc_MainWindow.cpp \
-		src/classes/MainWindow.h \
-		src/forms/ui_MainWindow.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mocs_compilation.o build/food_organizer_autogen/mocs_compilation.cpp
 
 InitialWidget.o: src/classes/InitialWidget.cpp src/classes/InitialWidget.h \
 		src/forms/ui_InitialWidget.h

@@ -1,5 +1,6 @@
 #include <QtWidgets/QMessageBox>
 #include <fstream>
+#include <stdio.h>
 #include <iostream>
 #include "MainWindow.h"
 #include "InitialWidget.h"
@@ -54,8 +55,10 @@ void MainWindow::LoginMenuClicked() {
 
 void MainWindow::LogoutMenuClicked() {
     QMessageBox msg;
-    msg.setText("Logout menu");
+    msg.setText("You have logged out successfully");
     msg.exec();
+    remove("build/auth.txt");
+    UpdateMainWindow();
 }
 
 void MainWindow::ExitMenuClicked() {
