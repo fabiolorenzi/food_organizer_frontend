@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include "MainWindow.h"
+#include "InitialWidget.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     ui.setupUi(this);
@@ -37,6 +38,8 @@ void MainWindow::UpdateMainWindow() {
         (*weeklyPlannerButton).setEnabled(false);
         (*storageButton).setEnabled(false);
         (*financesButton).setEnabled(false);
+        InitialWidget* initialWidget = new InitialWidget;
+        this->setCentralWidget(initialWidget);
     };
 }
 

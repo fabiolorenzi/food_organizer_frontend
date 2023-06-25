@@ -18,7 +18,9 @@ add_executable(
     food_organizer
     src/main.cpp
     src/forms/MainWindow.ui
+    src/forms/InitialWidget.ui
     src/classes/MainWindow.cpp
+    src/classes/InitialWidget.cpp
     #resource.qrc
 )
 set_target_properties(
