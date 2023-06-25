@@ -83,7 +83,6 @@ public:
         menuFile->addSeparator();
         menuFile->addAction(actionExit);
         menuEdit->addAction(actionSettings);
-        menuView->addAction(actionMain_Page);
         menuView->addAction(actionWeekly_Planner);
         menuView->addAction(actionStorage);
         menuView->addAction(actionFinances);

@@ -17,13 +17,26 @@ void MainWindow::UpdateMainWindow() {
     QAction* logoutButton = this->ui.actionLogout;
     QAction* settingsButton = this->ui.actionSettings;
     QAction* weeklyPlannerButton = this->ui.actionWeekly_Planner;
+    QAction* storageButton = this->ui.actionStorage;
+    QAction* financesButton = this->ui.actionFinances;
 
     std::ifstream authFile;
     authFile.open("build/auth.txt");
+
     if (authFile.is_open()) {
         (*loginButton).setEnabled(false);
+        (*logoutButton).setEnabled(true);
+        (*settingsButton).setEnabled(true);
+        (*weeklyPlannerButton).setEnabled(true);
+        (*storageButton).setEnabled(true);
+        (*financesButton).setEnabled(true);
     } else {
         (*loginButton).setEnabled(true);
+        (*logoutButton).setEnabled(false);
+        (*settingsButton).setEnabled(false);
+        (*weeklyPlannerButton).setEnabled(false);
+        (*storageButton).setEnabled(false);
+        (*financesButton).setEnabled(false);
     };
 }
 
