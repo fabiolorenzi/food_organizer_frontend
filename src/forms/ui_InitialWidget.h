@@ -3,6 +3,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
 
@@ -11,6 +12,7 @@ QT_BEGIN_NAMESPACE
 class Ui_InitialWidget
 {
 public:
+    QGridLayout *gridLayout;
     QLabel *label;
     QLabel *label_2;
 
@@ -18,24 +20,30 @@ public:
     {
         if (InitialWidget->objectName().isEmpty())
             InitialWidget->setObjectName(QString::fromUtf8("InitialWidget"));
-        InitialWidget->resize(400, 300);
+        InitialWidget->resize(501, 307);
+        gridLayout = new QGridLayout(InitialWidget);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         label = new QLabel(InitialWidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(0, 20, 401, 41));
         QFont font;
         font.setPointSize(18);
         font.setBold(true);
         font.setWeight(75);
         label->setFont(font);
         label->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(label, 0, 0, 1, 1);
+
         label_2 = new QLabel(InitialWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(10, 70, 381, 191));
         QFont font1;
         font1.setPointSize(12);
         label_2->setFont(font1);
         label_2->setLayoutDirection(Qt::LeftToRight);
         label_2->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(label_2, 1, 0, 1, 1);
+
 
         retranslateUi(InitialWidget);
 
