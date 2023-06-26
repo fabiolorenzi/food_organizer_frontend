@@ -20,9 +20,11 @@ add_executable(
     src/forms/MainWindow.ui
     src/forms/InitialWidget.ui
     src/forms/LoginWidget.ui
+    src/forms/SigninWidget.ui
     src/classes/MainWindow.cpp
     src/classes/InitialWidget.cpp
     src/classes/LoginWidget.cpp
+    src/classes/SigninWidget.cpp
     #resource.qrc
 )
 set_target_properties(
