@@ -1,6 +1,8 @@
 #include <QtWidgets/QMessageBox>
 #include <QtDebug>
 #include "LoginWidget.h"
+#include "MainWindow.h"
+#include "SigninWidget.h"
 
 LoginWidget::LoginWidget(QWidget* parent) : QWidget(parent) {
     ui.setupUi(this);
@@ -11,9 +13,9 @@ LoginWidget::~LoginWidget() {
 }
 
 void LoginWidget::SigninButtonClicked() {
-    QMessageBox msg;
-    msg.setText("Signin page");
-    msg.exec();
+    MainWindow* mainWindow = qobject_cast<MainWindow*>(parent());
+    SigninWidget* signinWidget = new SigninWidget();
+    mainWindow->ChangeWidget(signinWidget);
 }
 
 void LoginWidget::CancelButtonClicked() {
