@@ -56,17 +56,21 @@ SOURCES       = src/main.cpp \
 		src/classes/InitialWidget.cpp \
 		src/classes/LoginWidget.cpp \
 		src/classes/MainWindow.cpp \
+		src/classes/SigninWidget.cpp \
 		build/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp moc_InitialWidget.cpp \
 		moc_LoginWidget.cpp \
-		moc_MainWindow.cpp
+		moc_MainWindow.cpp \
+		moc_SigninWidget.cpp
 OBJECTS       = main.o \
 		InitialWidget.o \
 		LoginWidget.o \
 		MainWindow.o \
+		SigninWidget.o \
 		CMakeCXXCompilerId.o \
 		moc_InitialWidget.o \
 		moc_LoginWidget.o \
-		moc_MainWindow.o
+		moc_MainWindow.o \
+		moc_SigninWidget.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -130,7 +134,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -152,12 +155,15 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		food_organizer_frontend.pro src/classes/InitialWidget.h \
 		src/classes/LoginWidget.h \
 		src/classes/MainWindow.h \
+		src/classes/SigninWidget.h \
 		src/forms/ui_InitialWidget.h \
 		src/forms/ui_LoginWidget.h \
-		src/forms/ui_MainWindow.h src/main.cpp \
+		src/forms/ui_MainWindow.h \
+		src/forms/ui_SigninWidget.h src/main.cpp \
 		src/classes/InitialWidget.cpp \
 		src/classes/LoginWidget.cpp \
 		src/classes/MainWindow.cpp \
+		src/classes/SigninWidget.cpp \
 		build/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp
 QMAKE_TARGET  = food_organizer_frontend
 DESTDIR       = 
@@ -233,7 +239,6 @@ Makefile: food_organizer_frontend.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linu
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -317,7 +322,6 @@ Makefile: food_organizer_frontend.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linu
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -352,8 +356,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents src/classes/InitialWidget.h src/classes/LoginWidget.h src/classes/MainWindow.h src/forms/ui_InitialWidget.h src/forms/ui_LoginWidget.h src/forms/ui_MainWindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents src/main.cpp src/classes/InitialWidget.cpp src/classes/LoginWidget.cpp src/classes/MainWindow.cpp build/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents src/classes/InitialWidget.h src/classes/LoginWidget.h src/classes/MainWindow.h src/classes/SigninWidget.h src/forms/ui_InitialWidget.h src/forms/ui_LoginWidget.h src/forms/ui_MainWindow.h src/forms/ui_SigninWidget.h $(DISTDIR)/
+	$(COPY_FILE) --parents src/main.cpp src/classes/InitialWidget.cpp src/classes/LoginWidget.cpp src/classes/MainWindow.cpp src/classes/SigninWidget.cpp build/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -385,9 +389,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_InitialWidget.cpp moc_LoginWidget.cpp moc_MainWindow.cpp
+compiler_moc_header_make_all: moc_InitialWidget.cpp moc_LoginWidget.cpp moc_MainWindow.cpp moc_SigninWidget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_InitialWidget.cpp moc_LoginWidget.cpp moc_MainWindow.cpp
+	-$(DEL_FILE) moc_InitialWidget.cpp moc_LoginWidget.cpp moc_MainWindow.cpp moc_SigninWidget.cpp
 moc_InitialWidget.cpp: src/classes/InitialWidget.h \
 		src/forms/ui_InitialWidget.h \
 		moc_predefs.h \
@@ -405,6 +409,12 @@ moc_MainWindow.cpp: src/classes/MainWindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/florenzi/Desktop/food_organizer_frontend/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/florenzi/Desktop/food_organizer_frontend -I/home/florenzi/Desktop/food_organizer_frontend -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/classes/MainWindow.h -o moc_MainWindow.cpp
+
+moc_SigninWidget.cpp: src/classes/SigninWidget.h \
+		src/forms/ui_SigninWidget.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/florenzi/Desktop/food_organizer_frontend/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/florenzi/Desktop/food_organizer_frontend -I/home/florenzi/Desktop/food_organizer_frontend -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/classes/SigninWidget.h -o moc_SigninWidget.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -429,7 +439,11 @@ InitialWidget.o: src/classes/InitialWidget.cpp src/classes/InitialWidget.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o InitialWidget.o src/classes/InitialWidget.cpp
 
 LoginWidget.o: src/classes/LoginWidget.cpp src/classes/LoginWidget.h \
-		src/forms/ui_LoginWidget.h
+		src/forms/ui_LoginWidget.h \
+		src/classes/MainWindow.h \
+		src/forms/ui_MainWindow.h \
+		src/classes/SigninWidget.h \
+		src/forms/ui_SigninWidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o LoginWidget.o src/classes/LoginWidget.cpp
 
 MainWindow.o: src/classes/MainWindow.cpp src/classes/MainWindow.h \
@@ -439,6 +453,14 @@ MainWindow.o: src/classes/MainWindow.cpp src/classes/MainWindow.h \
 		src/classes/LoginWidget.h \
 		src/forms/ui_LoginWidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o src/classes/MainWindow.cpp
+
+SigninWidget.o: src/classes/SigninWidget.cpp src/classes/SigninWidget.h \
+		src/forms/ui_SigninWidget.h \
+		src/classes/MainWindow.h \
+		src/forms/ui_MainWindow.h \
+		src/classes/LoginWidget.h \
+		src/forms/ui_LoginWidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SigninWidget.o src/classes/SigninWidget.cpp
 
 CMakeCXXCompilerId.o: build/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CMakeCXXCompilerId.o build/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp
@@ -451,6 +473,9 @@ moc_LoginWidget.o: moc_LoginWidget.cpp
 
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp
+
+moc_SigninWidget.o: moc_SigninWidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_SigninWidget.o moc_SigninWidget.cpp
 
 ####### Install
 

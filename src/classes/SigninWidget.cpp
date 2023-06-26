@@ -19,9 +19,15 @@ void SigninWidget::LoginButtonClicked() {
 }
 
 void SigninWidget::CancelButtonClicked() {
-    QMessageBox msg;
-    msg.setText("Cancel clicked");
-    msg.exec();
+    QLineEdit* usernameInput = this->ui.usernameInput;
+    QLineEdit* emailInput = this->ui.emailInput;
+    QLineEdit* passwordInput = this->ui.passwordInput;
+    QLineEdit* reinsertPasswordInput = this->ui.reinsertPasswordInput;
+
+    (*usernameInput).setText("");
+    (*emailInput).setText("");
+    (*passwordInput).setText("");
+    (*reinsertPasswordInput).setText("");
 }
 
 void SigninWidget::SigninButtonClicked() {
