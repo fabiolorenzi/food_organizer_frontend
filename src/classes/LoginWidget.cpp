@@ -1,4 +1,5 @@
 #include <QtWidgets/QMessageBox>
+#include <QtDebug>
 #include "LoginWidget.h"
 
 LoginWidget::LoginWidget(QWidget* parent) : QWidget(parent) {
@@ -23,7 +24,9 @@ void LoginWidget::CancelButtonClicked() {
 }
 
 void LoginWidget::LoginButtonClicked() {
-    QMessageBox msg;
-    msg.setText("Login function");
-    msg.exec();
+    QString emailValue = this->ui.emailInput->text();
+    QString passwordValue = this->ui.passwordInput->text();
+
+    // The code below is to debug, like a console.log for Qt
+    //qDebug() << emailValue;
 }
