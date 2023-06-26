@@ -138,7 +138,7 @@ public:
     void retranslateUi(QWidget *LoginWidget)
     {
         LoginWidget->setWindowTitle(QCoreApplication::translate("LoginWidget", "Form", nullptr));
-        SigninButton->setText(QCoreApplication::translate("LoginWidget", "Signin", nullptr));
+        SigninButton->setText(QCoreApplication::translate("LoginWidget", "Sign in", nullptr));
         CancelButton->setText(QCoreApplication::translate("LoginWidget", "Cancel", nullptr));
         LoginButton->setText(QCoreApplication::translate("LoginWidget", "Login", nullptr));
         emailLabel->setText(QCoreApplication::translate("LoginWidget", "Email", nullptr));
