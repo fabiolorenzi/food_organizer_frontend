@@ -96,6 +96,7 @@ public:
 
         passwordInput = new QLineEdit(bottomFrame);
         passwordInput->setObjectName(QString::fromUtf8("passwordInput"));
+        passwordInput->setEchoMode(QLineEdit::Password);
 
         forms->setWidget(1, QFormLayout::FieldRole, passwordInput);
 
