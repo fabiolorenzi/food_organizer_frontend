@@ -49,9 +49,8 @@ void MainWindow::UpdateMainWindow() {
 }
 
 void MainWindow::LoginMenuClicked() {
-    this->takeCentralWidget();
     LoginWidget* loginWidget = new LoginWidget();
-    this->setCentralWidget(loginWidget);
+    ChangeWidget(loginWidget);
 }
 
 void MainWindow::LogoutMenuClicked() {
@@ -100,4 +99,9 @@ void MainWindow::AboutMenuClicked() {
     QMessageBox msg;
     msg.setText("About menu");
     msg.exec();
+}
+
+void MainWindow::ChangeWidget(QWidget* widget) {
+    this->takeCentralWidget();
+    this->setCentralWidget(widget);
 }

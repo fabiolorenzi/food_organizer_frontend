@@ -10,6 +10,7 @@ class MainWindow : public QMainWindow {
         MainWindow(QWidget* parent = 0);
         ~MainWindow();
         void UpdateMainWindow();
+        void ChangeWidget(QWidget* widget);
     private:
         Ui::MainWindow ui;
     protected slots:
