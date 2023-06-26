@@ -49,7 +49,8 @@ void MainWindow::UpdateMainWindow() {
 }
 
 void MainWindow::LoginMenuClicked() {
-    LoginWidget* loginWidget = new LoginWidget;
+    this->takeCentralWidget();
+    LoginWidget* loginWidget = new LoginWidget();
     this->setCentralWidget(loginWidget);
 }
 
@@ -62,7 +63,7 @@ void MainWindow::LogoutMenuClicked() {
 }
 
 void MainWindow::ExitMenuClicked() {
-    QApplication::quit();
+    QApplication::exit(0);
 }
 
 void MainWindow::SettingsMenuClicked() {
