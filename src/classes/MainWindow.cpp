@@ -4,6 +4,7 @@
 #include <iostream>
 #include "MainWindow.h"
 #include "InitialWidget.h"
+#include "LoginWidget.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     ui.setupUi(this);
@@ -48,9 +49,8 @@ void MainWindow::UpdateMainWindow() {
 }
 
 void MainWindow::LoginMenuClicked() {
-    QMessageBox msg;
-    msg.setText("Login menu");
-    msg.exec();
+    LoginWidget* loginWidget = new LoginWidget;
+    this->setCentralWidget(loginWidget);
 }
 
 void MainWindow::LogoutMenuClicked() {
