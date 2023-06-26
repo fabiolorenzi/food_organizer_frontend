@@ -63,7 +63,7 @@ void MainWindow::LogoutMenuClicked() {
 }
 
 void MainWindow::ExitMenuClicked() {
-    QApplication::exit(0);
+    QApplication::quit();
 }
 
 void MainWindow::SettingsMenuClicked() {
