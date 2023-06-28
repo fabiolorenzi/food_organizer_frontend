@@ -13,6 +13,7 @@ if(CMAKE_VERSION VERSION_LESS "3.7.0")
 endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Network REQUIRED)
 
 add_executable(
     food_organizer
@@ -34,4 +35,4 @@ set_target_properties(
         SUFFIX ".exe"
 )
 
-target_link_libraries(food_organizer Qt5::Widgets)
+target_link_libraries(food_organizer Qt5::Widgets Qt5::Network)
