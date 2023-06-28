@@ -14,6 +14,7 @@ endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
+find_package(Qt5 COMPONENTS Core REQUIRED)
 
 add_executable(
     food_organizer
@@ -35,4 +36,4 @@ set_target_properties(
         SUFFIX ".exe"
 )
 
-target_link_libraries(food_organizer Qt5::Widgets Qt5::Network)
+target_link_libraries(food_organizer Qt5::Widgets Qt5::Network Qt5::Core)

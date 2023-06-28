@@ -2,6 +2,7 @@
 #define SIGNINWIDGET_H_
 
 #include <QtWidgets/QWidget>
+#include <QtNetwork/QNetworkReply>
 #include "../forms/ui_SigninWidget.h"
 
 class SigninWidget : public QWidget {
@@ -15,6 +16,7 @@ class SigninWidget : public QWidget {
         void LoginButtonClicked();
         void CancelButtonClicked();
         void SigninButtonClicked();
+        void PostRequestFinished(QNetworkReply*);
 };
 
 #endif
