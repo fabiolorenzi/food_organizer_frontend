@@ -42,6 +42,9 @@ void SigninWidget::SigninButtonClicked() {
 
     if ((*usernameInput).text().size() > 0 && (*emailInput).text().size() && (*passwordInput).text().size() > 0 && (*reinsertPasswordInput).text().size() > 0) {
         if ((*passwordInput).text() == (*reinsertPasswordInput).text()) {
+            QPushButton* button = this->ui.SigninButton;
+            (*button).setText("Loading...");
+
             QNetworkAccessManager* manager = new QNetworkAccessManager(this);
             connect(manager, &QNetworkAccessManager::finished, this, &SigninWidget::PostRequestFinished);
 
@@ -84,4 +87,7 @@ void SigninWidget::PostRequestFinished(QNetworkReply* reply) {
         msg.exec();
         CancelButtonClicked();
     };
+
+    QPushButton* button = this->ui.SigninButton;
+    (*button).setText("Sign in");
 }
