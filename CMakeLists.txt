@@ -24,13 +24,15 @@ add_executable(
     src/forms/LoginWidget.ui
     src/forms/SigninWidget.ui
     src/forms/DashboardWidget.ui
+    src/forms/SettingsWidget.ui
     src/classes/MainWindow.cpp
     src/classes/InitialWidget.cpp
     src/classes/LoginWidget.cpp
     src/classes/SigninWidget.cpp
     src/classes/DashboardWidget.cpp
-    #resource.qrc
+    src/classes/SettingsWidget.cpp
 )
+
 set_target_properties(
     food_organizer
     PROPERTIES
