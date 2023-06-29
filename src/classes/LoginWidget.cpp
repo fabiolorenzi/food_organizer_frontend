@@ -3,7 +3,10 @@
 #include <QtCore/QBuffer>
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
+#include <QtCore/QFile>
 #include <QUrlQuery>
+#include <fstream>
+#include <iostream>
 #include "LoginWidget.h"
 #include "MainWindow.h"
 #include "SigninWidget.h"
@@ -78,7 +81,14 @@ void LoginWidget::PatchRequestFinished(QNetworkReply* reply) {
         msg.setText("User not found");
         msg.exec();
     } else {
-        qDebug() << replyObject.value("token");
+        QString token = replyObject.value("token").toString();
+        QFile authFile("build/auth.txt");
+        if (authFile.open(QIODevice::WriteOnly)) {
+            QTextStream out(&authFile);
+            out << token;
+            authFile.close();
+        };
+
         QMessageBox msg;
         msg.setText("Login successfully");
         msg.exec();
