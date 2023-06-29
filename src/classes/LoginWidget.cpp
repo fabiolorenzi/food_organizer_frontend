@@ -10,6 +10,7 @@
 #include "LoginWidget.h"
 #include "MainWindow.h"
 #include "SigninWidget.h"
+#include "DashboardWidget.h"
 
 LoginWidget::LoginWidget(QWidget* parent) : QWidget(parent) {
     ui.setupUi(this);
@@ -88,6 +89,10 @@ void LoginWidget::PatchRequestFinished(QNetworkReply* reply) {
             out << token;
             authFile.close();
         };
+
+        MainWindow* mainWindow = qobject_cast<MainWindow*>(parent());
+        DashboardWidget* dashboardWidget = new DashboardWidget();
+        mainWindow->ChangeWidget(dashboardWidget);
 
         QMessageBox msg;
         msg.setText("Login successfully");

@@ -5,6 +5,7 @@
 #include "MainWindow.h"
 #include "InitialWidget.h"
 #include "LoginWidget.h"
+#include "DashboardWidget.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     ui.setupUi(this);
@@ -35,6 +36,8 @@ void MainWindow::UpdateMainWindow() {
         (*weeklyPlannerButton).setEnabled(true);
         (*storageButton).setEnabled(true);
         (*financesButton).setEnabled(true);
+        DashboardWidget* dashboardWidget = new DashboardWidget();
+        this->setCentralWidget(dashboardWidget);
     } else {
         (*loginButton).setEnabled(true);
         (*logoutButton).setEnabled(false);
@@ -43,7 +46,7 @@ void MainWindow::UpdateMainWindow() {
         (*weeklyPlannerButton).setEnabled(false);
         (*storageButton).setEnabled(false);
         (*financesButton).setEnabled(false);
-        InitialWidget* initialWidget = new InitialWidget;
+        InitialWidget* initialWidget = new InitialWidget();
         this->setCentralWidget(initialWidget);
     };
 }
@@ -54,11 +57,13 @@ void MainWindow::LoginMenuClicked() {
 }
 
 void MainWindow::LogoutMenuClicked() {
+    remove("build/auth.txt");
+    InitialWidget* initialWidget = new InitialWidget();
+    
     QMessageBox msg;
     msg.setText("You have logged out successfully");
     msg.exec();
-    remove("build/auth.txt");
-    UpdateMainWindow();
+    ChangeWidget(initialWidget);
 }
 
 void MainWindow::ExitMenuClicked() {
@@ -72,9 +77,8 @@ void MainWindow::SettingsMenuClicked() {
 }
 
 void MainWindow::DashboardMenuClicked() {
-    QMessageBox msg;
-    msg.setText("Dashboard menu");
-    msg.exec();
+    DashboardWidget* dashboardWidget = new DashboardWidget();
+    ChangeWidget(dashboardWidget);
 }
 
 void MainWindow::WeeklyPlannerMenuClicked() {
@@ -104,4 +108,33 @@ void MainWindow::AboutMenuClicked() {
 void MainWindow::ChangeWidget(QWidget* widget) {
     this->takeCentralWidget();
     this->setCentralWidget(widget);
+
+    std::ifstream authFile;
+    authFile.open("build/auth.txt");
+
+    QAction* loginButton = this->ui.actionLogin;
+    QAction* logoutButton = this->ui.actionLogout;
+    QAction* settingsButton = this->ui.actionSettings;
+    QAction* dashboardButton = this->ui.actionDashboard;
+    QAction* weeklyPlannerButton = this->ui.actionWeekly_Planner;
+    QAction* storageButton = this->ui.actionStorage;
+    QAction* financesButton = this->ui.actionFinances;
+
+    if (authFile.is_open()) {
+        (*loginButton).setEnabled(false);
+        (*logoutButton).setEnabled(true);
+        (*settingsButton).setEnabled(true);
+        (*dashboardButton).setEnabled(true);
+        (*weeklyPlannerButton).setEnabled(true);
+        (*storageButton).setEnabled(true);
+        (*financesButton).setEnabled(true);
+    } else {
+        (*loginButton).setEnabled(true);
+        (*logoutButton).setEnabled(false);
+        (*settingsButton).setEnabled(false);
+        (*dashboardButton).setEnabled(false);
+        (*weeklyPlannerButton).setEnabled(false);
+        (*storageButton).setEnabled(false);
+        (*financesButton).setEnabled(false);
+    };
 }

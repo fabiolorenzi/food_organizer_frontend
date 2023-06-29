@@ -23,10 +23,12 @@ add_executable(
     src/forms/InitialWidget.ui
     src/forms/LoginWidget.ui
     src/forms/SigninWidget.ui
+    src/forms/DashboardWidget.ui
     src/classes/MainWindow.cpp
     src/classes/InitialWidget.cpp
     src/classes/LoginWidget.cpp
     src/classes/SigninWidget.cpp
+    src/classes/DashboardWidget.cpp
     #resource.qrc
 )
 set_target_properties(
