@@ -3,7 +3,6 @@
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
 #include <QUrlQuery>
-#include <QtDebug>
 #include "SigninWidget.h"
 #include "MainWindow.h"
 #include "LoginWidget.h"
