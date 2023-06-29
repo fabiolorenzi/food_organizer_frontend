@@ -62,14 +62,20 @@ void LoginWidget::LoginButtonClicked() {
 }
 
 void LoginWidget::PatchRequestFinished(QNetworkReply* reply) {
-    QByteArray response_data = reply->readAll();
-    QJsonDocument json = QJsonDocument::fromJson(response_data);
+    QByteArray responseData = reply->readAll();
+    QVariant responseStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+
+    QJsonDocument json = QJsonDocument::fromJson(responseData);
     QJsonObject replyObject = json.object();
     reply->deleteLater();
 
-    if (replyObject.value("status") == 404) {
+    if (responseStatus == 403) {
         QMessageBox msg;
-        msg.setText("Not found");
+        msg.setText("Wrong password");
+        msg.exec();
+    } else if (responseStatus == 404) {
+        QMessageBox msg;
+        msg.setText("User not found");
         msg.exec();
     } else {
         qDebug() << replyObject.value("token");
