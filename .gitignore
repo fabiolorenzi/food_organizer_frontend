@@ -1,1 +1,4 @@
 build/
+.qmake.stash
+food_organizer_frontend.pro
+Makefile
