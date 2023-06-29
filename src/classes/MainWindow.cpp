@@ -6,6 +6,7 @@
 #include "InitialWidget.h"
 #include "LoginWidget.h"
 #include "DashboardWidget.h"
+#include "SettingsWidget.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     ui.setupUi(this);
@@ -71,9 +72,8 @@ void MainWindow::ExitMenuClicked() {
 }
 
 void MainWindow::SettingsMenuClicked() {
-    QMessageBox msg;
-    msg.setText("Settings menu");
-    msg.exec();
+    SettingsWidget* settingsWidget = new SettingsWidget();
+    ChangeWidget(settingsWidget);
 }
 
 void MainWindow::DashboardMenuClicked() {
