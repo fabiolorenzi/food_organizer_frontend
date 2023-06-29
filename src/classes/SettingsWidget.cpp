@@ -4,6 +4,24 @@
 
 SettingsWidget::SettingsWidget(QWidget* parent) : QWidget(parent) {
     ui.setupUi(this);
+
+    QLabel* emailLabel = this->ui.EmailLabel;
+    QLabel* usernameLabel = this->ui.usernameLabel;
+    QLabel* passwordLabel = this->ui.PasswordLabel;
+    QLabel* reinsertPasswordLabel = this->ui.ReinsertPasswordLabel;
+
+    emailLabel->setText("Loading...");
+    usernameLabel->setText("Loading...");
+    passwordLabel->setText("Loading...");
+    reinsertPasswordLabel->setText("Loading...");
+
+    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+    connect(manager, &QNetworkAccessManager::finished, this, &SettingsWidget::GetRequestFinished);
+
+    QUrl url("https://food-organizer-backend.hopto.org/api/v1/users/1");
+    QNetworkRequest request(url);
+
+    manager->get(request);
 }
 
 SettingsWidget::~SettingsWidget() {

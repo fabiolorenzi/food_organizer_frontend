@@ -16,6 +16,7 @@ class SettingsWidget : public QWidget {
         void CancelButtonClicked();
         void UpdateButtonClicked();
         void DeleteButtonClicked();
+        void GetRequestFinished(QNetworkReply*);
 };
 
 #endif
