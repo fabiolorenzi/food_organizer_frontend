@@ -103,6 +103,7 @@ public:
 
         passwordInput = new QLineEdit(BottomFrame);
         passwordInput->setObjectName(QString::fromUtf8("passwordInput"));
+        passwordInput->setEchoMode(QLineEdit::Password);
 
         Form->setWidget(2, QFormLayout::LabelRole, passwordInput);
 
@@ -113,6 +114,7 @@ public:
 
         reinsertPasswordInput = new QLineEdit(BottomFrame);
         reinsertPasswordInput->setObjectName(QString::fromUtf8("reinsertPasswordInput"));
+        reinsertPasswordInput->setEchoMode(QLineEdit::Password);
 
         Form->setWidget(3, QFormLayout::LabelRole, reinsertPasswordInput);
 
