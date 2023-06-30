@@ -2,6 +2,9 @@
 #include <QtWidgets/QMessageBox>
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
+#include <QtCore/QJsonValue>
+#include <QtCore/QFile>
+#include <QUrlQuery>
 #include <QDebug>
 #include <fstream>
 #include <iostream>
@@ -9,12 +12,15 @@
 #include "MainWindow.h"
 #include "InitialWidget.h"
 
+int* user_id = new int();
+
 SettingsWidget::SettingsWidget(QWidget* parent) : QWidget(parent) {
     ui.setupUi(this);
     GetUserByToken();
 }
 
 SettingsWidget::~SettingsWidget() {
+    delete user_id;
     delete this;
 }
 
@@ -23,9 +29,50 @@ void SettingsWidget::CancelButtonClicked() {
 }
 
 void SettingsWidget::UpdateButtonClicked() {
-    QMessageBox msg;
-    msg.setText("update button");
-    msg.exec();
+    QLineEdit* usernameInput = this->ui.usernameInput;
+    QLineEdit* emailInput = this->ui.emailInput;
+    QLineEdit* passwordInput = this->ui.passwordInput;
+    QLineEdit* reinsertPasswordInput = this->ui.reinsertPasswordInput;
+
+    if ((*passwordInput).text() == (*reinsertPasswordInput).text()) {
+        QLabel* emailLabel = this->ui.EmailLabel;
+        QLabel* usernameLabel = this->ui.usernameLabel;
+        QLabel* passwordLabel = this->ui.PasswordLabel;
+        QLabel* reinsertPasswordLabel = this->ui.ReinsertPasswordLabel;
+        QPushButton* updateButton = this->ui.updateButton;
+
+        emailLabel->setText("Updating...");
+        usernameLabel->setText("Updating...");
+        passwordLabel->setText("Updating...");
+        reinsertPasswordLabel->setText("Updating...");
+        updateButton->setText("Updating...");
+
+        QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+        connect(manager, &QNetworkAccessManager::finished, this, &SettingsWidget::PutRequestFinished);
+
+        std::ifstream authFile("build/auth.txt");
+        std::string token;
+        authFile >> token;
+        QString QToken = QString::fromStdString("Bearer " + token);
+
+        QUrl url("https://food-organizer-backend.hopto.org/api/v1/users/" + QString::number(*user_id));
+        QNetworkRequest request(url);
+
+        request.setRawHeader(QByteArrayLiteral("Authorization"),QToken.toUtf8());
+
+        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+    
+        QUrlQuery params;
+        params.addQueryItem("username", (*usernameInput).text());
+        params.addQueryItem("email", (*emailInput).text());
+        params.addQueryItem("password", (*passwordInput).text());
+
+        manager->put(request, params.toString(QUrl::FullyEncoded).toUtf8());
+    } else {
+        QMessageBox msg;
+        msg.setText("Passwords are not the same");
+        msg.exec();
+    };
 }
 
 void SettingsWidget::DeleteButtonClicked() {
@@ -96,5 +143,44 @@ void SettingsWidget::GetRequestFinished(QNetworkReply* reply) {
         usernameInput->setText(replyObject.value("username").toString());
         passwordInput->setText(replyObject.value("password").toString());
         reinsertPasswordInput->setText(replyObject.value("password").toString());
+
+        *user_id = replyObject.value("id").toInt();
     };
 }
+
+void SettingsWidget::PutRequestFinished(QNetworkReply* reply) {
+    QByteArray response_data = reply->readAll();
+    QJsonDocument json = QJsonDocument::fromJson(response_data);
+    QJsonObject replyObject = json.object();
+    reply->deleteLater();
+
+    if (replyObject.value("status") == 400) {
+        QMessageBox msg;
+        msg.setText("The email must be unique");
+        msg.exec();
+    } else {
+        QMessageBox msg;
+        msg.setText("User updated successfully");
+        msg.exec();
+        QString token = replyObject.value("token").toString();
+        QFile authFile("build/auth.txt");
+        if (authFile.open(QIODevice::WriteOnly)) {
+            QTextStream out(&authFile);
+            out << token;
+            authFile.close();
+        };
+        CancelButtonClicked();
+    };
+
+    QLabel* emailLabel = this->ui.EmailLabel;
+    QLabel* usernameLabel = this->ui.usernameLabel;
+    QLabel* passwordLabel = this->ui.PasswordLabel;
+    QLabel* reinsertPasswordLabel = this->ui.ReinsertPasswordLabel;
+    QPushButton* updateButton = this->ui.updateButton;
+
+    emailLabel->setText("Email");
+    usernameLabel->setText("Username");
+    passwordLabel->setText("Password");
+    reinsertPasswordLabel->setText("Reinsert password");
+    updateButton->setText("Update");
+};
