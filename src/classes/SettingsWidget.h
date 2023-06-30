@@ -12,6 +12,7 @@ class SettingsWidget : public QWidget {
         ~SettingsWidget();
     private:
         Ui::SettingsWidget ui;
+        void GetUserByToken();
     protected slots:
         void CancelButtonClicked();
         void UpdateButtonClicked();

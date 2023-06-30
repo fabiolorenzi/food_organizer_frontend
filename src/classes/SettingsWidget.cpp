@@ -11,7 +11,30 @@
 
 SettingsWidget::SettingsWidget(QWidget* parent) : QWidget(parent) {
     ui.setupUi(this);
+    GetUserByToken();
+}
 
+SettingsWidget::~SettingsWidget() {
+    delete this;
+}
+
+void SettingsWidget::CancelButtonClicked() {
+    GetUserByToken();
+}
+
+void SettingsWidget::UpdateButtonClicked() {
+    QMessageBox msg;
+    msg.setText("update button");
+    msg.exec();
+}
+
+void SettingsWidget::DeleteButtonClicked() {
+    QMessageBox msg;
+    msg.setText("delete button");
+    msg.exec();
+}
+
+void SettingsWidget::GetUserByToken() {
     QLabel* emailLabel = this->ui.EmailLabel;
     QLabel* usernameLabel = this->ui.usernameLabel;
     QLabel* passwordLabel = this->ui.PasswordLabel;
@@ -36,28 +59,6 @@ SettingsWidget::SettingsWidget(QWidget* parent) : QWidget(parent) {
     request.setRawHeader(QByteArrayLiteral("Authorization"),QToken.toUtf8());
 
     manager->get(request);
-}
-
-SettingsWidget::~SettingsWidget() {
-    delete this;
-}
-
-void SettingsWidget::CancelButtonClicked() {
-    QMessageBox msg;
-    msg.setText("cancel button");
-    msg.exec();
-}
-
-void SettingsWidget::UpdateButtonClicked() {
-    QMessageBox msg;
-    msg.setText("update button");
-    msg.exec();
-}
-
-void SettingsWidget::DeleteButtonClicked() {
-    QMessageBox msg;
-    msg.setText("delete button");
-    msg.exec();
 }
 
 void SettingsWidget::GetRequestFinished(QNetworkReply* reply) {
