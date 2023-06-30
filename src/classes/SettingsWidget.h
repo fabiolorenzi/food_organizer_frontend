@@ -19,6 +19,7 @@ class SettingsWidget : public QWidget {
         void DeleteButtonClicked();
         void GetRequestFinished(QNetworkReply*);
         void PutRequestFinished(QNetworkReply*);
+        void DeleteRequestFinished(QNetworkReply*);
 };
 
 #endif

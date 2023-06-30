@@ -76,9 +76,30 @@ void SettingsWidget::UpdateButtonClicked() {
 }
 
 void SettingsWidget::DeleteButtonClicked() {
-    QMessageBox msg;
-    msg.setText("delete button");
-    msg.exec();
+    QLabel* emailLabel = this->ui.EmailLabel;
+    QLabel* usernameLabel = this->ui.usernameLabel;
+    QLabel* passwordLabel = this->ui.PasswordLabel;
+    QLabel* reinsertPasswordLabel = this->ui.ReinsertPasswordLabel;
+
+    emailLabel->setText("Loading...");
+    usernameLabel->setText("Loading...");
+    passwordLabel->setText("Loading...");
+    reinsertPasswordLabel->setText("Loading...");
+
+    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+    connect(manager, &QNetworkAccessManager::finished, this, &SettingsWidget::DeleteRequestFinished);
+
+    std::ifstream authFile("build/auth.txt");
+    std::string token;
+    authFile >> token;
+    QString QToken = QString::fromStdString("Bearer " + token);
+
+    QUrl url("https://food-organizer-backend.hopto.org/api/v1/users/" + QString::number(*user_id));
+    QNetworkRequest request(url);
+
+    request.setRawHeader(QByteArrayLiteral("Authorization"),QToken.toUtf8());
+
+    manager->deleteResource(request);
 }
 
 void SettingsWidget::GetUserByToken() {
@@ -184,3 +205,21 @@ void SettingsWidget::PutRequestFinished(QNetworkReply* reply) {
     reinsertPasswordLabel->setText("Reinsert password");
     updateButton->setText("Update");
 };
+
+void SettingsWidget::DeleteRequestFinished(QNetworkReply* reply) {
+    QVariant responseStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+    reply->deleteLater();
+
+    QMessageBox msg;
+    if (responseStatus == 403 || responseStatus == 500) {
+        msg.setText("Unauthorized, you will be logged out");
+    } else {
+        msg.setText("User deleted successfully");
+    };
+    msg.exec();
+    remove("build/auth.txt");
+
+    MainWindow* mainWindow = qobject_cast<MainWindow*>(parent());
+    InitialWidget* initialWidget = new InitialWidget();
+    mainWindow->ChangeWidget(initialWidget);
+}
