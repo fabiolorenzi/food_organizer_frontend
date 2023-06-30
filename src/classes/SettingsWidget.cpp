@@ -6,6 +6,8 @@
 #include <fstream>
 #include <iostream>
 #include "SettingsWidget.h"
+#include "MainWindow.h"
+#include "InitialWidget.h"
 
 SettingsWidget::SettingsWidget(QWidget* parent) : QWidget(parent) {
     ui.setupUi(this);
@@ -66,6 +68,32 @@ void SettingsWidget::GetRequestFinished(QNetworkReply* reply) {
     QJsonObject replyObject = json.object();
     reply->deleteLater();
 
-    qDebug() << responseStatus;
-    qDebug() << replyObject.value("email").toString();
+    if (responseStatus == 403 || responseStatus == 500) {
+        QMessageBox msg;
+        msg.setText("Unauthorized, you will be logged out");
+        msg.exec();
+        remove("build/auth.txt");
+
+        MainWindow* mainWindow = qobject_cast<MainWindow*>(parent());
+        InitialWidget* initialWidget = new InitialWidget();
+        mainWindow->ChangeWidget(initialWidget);
+    } else {
+        QLabel* emailLabel = this->ui.EmailLabel;
+        QLabel* usernameLabel = this->ui.usernameLabel;
+        QLabel* passwordLabel = this->ui.PasswordLabel;
+        QLabel* reinsertPasswordLabel = this->ui.ReinsertPasswordLabel;
+        QLineEdit* emailInput = this->ui.emailInput;
+        QLineEdit* usernameInput = this->ui.usernameInput;
+        QLineEdit* passwordInput = this->ui.passwordInput;
+        QLineEdit* reinsertPasswordInput = this->ui.reinsertPasswordInput;
+
+        emailLabel->setText("Email");
+        usernameLabel->setText("Username");
+        passwordLabel->setText("Password");
+        reinsertPasswordLabel->setText("Reinsert password");
+        emailInput->setText(replyObject.value("email").toString());
+        usernameInput->setText(replyObject.value("username").toString());
+        passwordInput->setText(replyObject.value("password").toString());
+        reinsertPasswordInput->setText(replyObject.value("password").toString());
+    };
 }
