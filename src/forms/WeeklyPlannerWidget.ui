@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WeeklyPlannerWidget</class>
+ <widget class="QWidget" name="WeeklyPlannerWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>757</width>
+    <height>583</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QFrame" name="TopFrame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="Title">
+        <property name="font">
+         <font>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Weekly Planner</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QFrame" name="BottomFrame">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QFrame" name="InputsSection">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QFrame" name="WeekPlanLine">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="0" column="0">
+             <widget class="QLabel" name="WeekPlanDate">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>This week plan start the
+                                                                03/07/2023</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="InputsLine">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <layout class="QFormLayout" name="LeftInputs">
+              <item row="0" column="0">
+               <widget class="QLineEdit" name="MondayBInput"/>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="MondayB">
+                <property name="text">
+                 <string>Monday breakfast</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLineEdit" name="MondayLInput"/>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="MondayL">
+                <property name="text">
+                 <string>Monday lunch</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLineEdit" name="MondayDInput"/>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabel" name="MondayD">
+                <property name="text">
+                 <string>Monday dinner</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLineEdit" name="TuesdayBInput"/>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLabel" name="TuesdayB">
+                <property name="text">
+                 <string>Tuesday breakfast</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLineEdit" name="TuesdayLInput"/>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLabel" name="TuesdayL">
+                <property name="text">
+                 <string>Tuesday lunch</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLineEdit" name="TuesdayDInput"/>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLabel" name="TuesdayD">
+                <property name="text">
+                 <string>Tuesday dinner</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLineEdit" name="WednesdayBInput"/>
+              </item>
+              <item row="6" column="1">
+               <widget class="QLabel" name="WednesdayB">
+                <property name="text">
+                 <string>Wednesday breakfast</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QLineEdit" name="WednesdayLInput"/>
+              </item>
+              <item row="7" column="1">
+               <widget class="QLabel" name="WednesdayL">
+                <property name="text">
+                 <string>Wednesday lunch</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0">
+               <widget class="QLineEdit" name="WednesdayDInput"/>
+              </item>
+              <item row="8" column="1">
+               <widget class="QLabel" name="WednesdayD">
+                <property name="text">
+                 <string>Wednesday dinner</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QLineEdit" name="ThursdayBInput"/>
+              </item>
+              <item row="9" column="1">
+               <widget class="QLabel" name="ThursdayB">
+                <property name="text">
+                 <string>Thursday breakfast</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0">
+               <widget class="QLineEdit" name="ThursdayLInput"/>
+              </item>
+              <item row="10" column="1">
+               <widget class="QLabel" name="ThursdayL">
+                <property name="text">
+                 <string>Thursday lunch</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QFormLayout" name="RightInputs">
+              <item row="0" column="0">
+               <widget class="QLineEdit" name="ThursdayDInput"/>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="ThursdayD">
+                <property name="text">
+                 <string>Thursday dinner</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLineEdit" name="FridayBInput"/>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="FridayB">
+                <property name="text">
+                 <string>Friday breakfast</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLineEdit" name="FridayLInput"/>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabel" name="FridayL">
+                <property name="text">
+                 <string>Friday lunch</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLineEdit" name="FridayDInput"/>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLabel" name="FridayD">
+                <property name="text">
+                 <string>Friday dinner</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLineEdit" name="SaturdayBInput"/>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLabel" name="SaturdayB">
+                <property name="text">
+                 <string>Saturday breakfast</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLineEdit" name="SaturdayLInput"/>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLabel" name="SaturdayL">
+                <property name="text">
+                 <string>Saturday lunch</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLineEdit" name="SaturdayDInput"/>
+              </item>
+              <item row="6" column="1">
+               <widget class="QLabel" name="SaturdayD">
+                <property name="text">
+                 <string>Saturday dinner</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QLineEdit" name="SundayBInput"/>
+              </item>
+              <item row="7" column="1">
+               <widget class="QLabel" name="SundayB">
+                <property name="text">
+                 <string>Sunday breakfast</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0">
+               <widget class="QLineEdit" name="SundayLInput"/>
+              </item>
+              <item row="8" column="1">
+               <widget class="QLabel" name="SundayL">
+                <property name="text">
+                 <string>Sunday lunch</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QLineEdit" name="SundayDInput"/>
+              </item>
+              <item row="9" column="1">
+               <widget class="QLabel" name="SundayD">
+                <property name="text">
+                 <string>Sunday dinner</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0">
+               <widget class="QLineEdit" name="EmptyInput">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="ButtonsSection">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QPushButton" name="CancelButton">
+           <property name="text">
+            <string>Cancel</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="SaveButton">
+           <property name="text">
+            <string>Save</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="WeekSelectorButton">
+           <property name="text">
+            <string>Next week</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>CancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>WeeklyPlannerWidget</receiver>
+   <slot>CancelButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>143</x>
+     <y>443</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>378</x>
+     <y>258</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>SaveButton</sender>
+   <signal>clicked()</signal>
+   <receiver>WeeklyPlannerWidget</receiver>
+   <slot>SaveButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>378</x>
+     <y>443</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>378</x>
+     <y>258</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>WeekSelectorButton</sender>
+   <signal>clicked()</signal>
+   <receiver>WeeklyPlannerWidget</receiver>
+   <slot>WeekSelectorButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>613</x>
+     <y>443</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>378</x>
+     <y>258</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

@@ -25,12 +25,14 @@ add_executable(
     src/forms/SigninWidget.ui
     src/forms/DashboardWidget.ui
     src/forms/SettingsWidget.ui
+    src/forms/WeeklyPlannerWidget.ui
     src/classes/MainWindow.cpp
     src/classes/InitialWidget.cpp
     src/classes/LoginWidget.cpp
     src/classes/SigninWidget.cpp
     src/classes/DashboardWidget.cpp
     src/classes/SettingsWidget.cpp
+    src/classes/WeeklyPlannerWidget.h
 )
 
 set_target_properties(

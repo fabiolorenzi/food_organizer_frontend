@@ -7,6 +7,7 @@
 #include "LoginWidget.h"
 #include "DashboardWidget.h"
 #include "SettingsWidget.h"
+#include "WeeklyPlannerWidget.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     ui.setupUi(this);
@@ -82,9 +83,8 @@ void MainWindow::DashboardMenuClicked() {
 }
 
 void MainWindow::WeeklyPlannerMenuClicked() {
-    QMessageBox msg;
-    msg.setText("Weekly planner menu");
-    msg.exec();
+    WeeklyPlannerWidget* weeklyPlannerWidget = new WeeklyPlannerWidget();
+    ChangeWidget(weeklyPlannerWidget);
 }
 
 void MainWindow::StorageMenuClicked() {
