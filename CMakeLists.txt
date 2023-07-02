@@ -32,7 +32,7 @@ add_executable(
     src/classes/SigninWidget.cpp
     src/classes/DashboardWidget.cpp
     src/classes/SettingsWidget.cpp
-    src/classes/WeeklyPlannerWidget.h
+    src/classes/WeeklyPlannerWidget.cpp
 )
 
 set_target_properties(
