@@ -83,8 +83,7 @@
                                                             </font>
                                                         </property>
                                                         <property name="text">
-                                                            <string>This week plan start the
-                                                                03/07/2023</string>
+                                                            <string>This week plan start the 03/07/2023</string>
                                                         </property>
                                                         <property name="alignment">
                                                             <set>Qt::AlignCenter</set>

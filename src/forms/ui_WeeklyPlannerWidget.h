@@ -428,8 +428,7 @@ public:
     {
         WeeklyPlannerWidget->setWindowTitle(QCoreApplication::translate("WeeklyPlannerWidget", "Form", nullptr));
         Title->setText(QCoreApplication::translate("WeeklyPlannerWidget", "Weekly Planner", nullptr));
-        WeekPlanDate->setText(QCoreApplication::translate("WeeklyPlannerWidget", "This week plan start the\n"
-"                                                                03/07/2023", nullptr));
+        WeekPlanDate->setText(QCoreApplication::translate("WeeklyPlannerWidget", "This week plan start the 03/07/2023", nullptr));
         MondayB->setText(QCoreApplication::translate("WeeklyPlannerWidget", "Monday breakfast", nullptr));
         MondayL->setText(QCoreApplication::translate("WeeklyPlannerWidget", "Monday lunch", nullptr));
         MondayD->setText(QCoreApplication::translate("WeeklyPlannerWidget", "Monday dinner", nullptr));
