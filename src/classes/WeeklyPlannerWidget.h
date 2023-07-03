@@ -13,10 +13,12 @@ class WeeklyPlannerWidget : public QWidget {
     private:
         Ui::WeeklyPlannerWidget ui;
         void SwitchWeeklyPlanner(bool value);
+        void GetWeeklyPlan(int day, int month, int year);
     protected slots:
         void CancelButtonClicked();
         void SaveButtonClicked();
         void WeekSelectorButtonClicked();
+        void GetRequestFinished(QNetworkReply*);
 };
 
 #endif
