@@ -33,6 +33,7 @@ add_executable(
     src/classes/DashboardWidget.cpp
     src/classes/SettingsWidget.cpp
     src/classes/WeeklyPlannerWidget.cpp
+    src/functions/DateManager.cpp
 )
 
 set_target_properties(
