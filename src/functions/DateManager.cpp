@@ -6,61 +6,103 @@ auto now = std::chrono::system_clock::now();
 std::time_t now_c = std::chrono::system_clock::to_time_t(now);
 struct tm *parts = std::localtime(&now_c);
 
+const int monthLength [12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+int day = parts->tm_mday;
+int month = parts->tm_mon + 1;
+int year = parts->tm_year + 1900;
+
 int GetCurrentDay() {
-    return parts->tm_mday;
+    int wDay = parts->tm_wday - 1;
+    if (wDay < 0) {
+        wDay = 7;
+    };
+    if (day - wDay > 0) {
+        return day - wDay;
+    } else if (day - wDay < 0) {
+        int temp_month = month - 1;
+        if (temp_month < 1) {
+            temp_month = 12;
+        };
+        return monthLength[temp_month] + (day - wDay);
+    } else {
+        return monthLength[month - 1];
+    };
 }
 
 int GetCurrentMonth() {
-    return parts->tm_mon + 1;
+    int wDay = parts->tm_wday - 1;
+    if (wDay < 0) {
+        wDay = 7;
+    };
+    if (day - wDay > 0) {
+        return month;
+    } else {
+        int temp_month = month - 1;
+        if (temp_month < 1) {
+            temp_month = 12;
+        };
+        return temp_month;
+    };
 }
 
 int GetCurrentYear() {
-    return parts->tm_year + 1900;
+    int wDay = parts->tm_wday - 1;
+    if (wDay < 0) {
+        wDay = 7;
+    };
+    if (day - wDay > 0) {
+        return year;
+    } else {
+        int temp_month = month - 1;
+        if (temp_month < 1) {
+            return year - 1;
+        };
+        return year;
+    };
 }
 
 int GetNextDay() {
-    int monthLength [12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    int day = parts->tm_mday;
-    int month = parts->tm_mon;
+    int wDay = parts->tm_wday - 1;
+    if (wDay < 0) {
+        wDay = 7;
+    };
 
-    if (monthLength[month] - (day + 7) > 0) {
-        return day + 7;
-    } else if (monthLength[month] - (day + 7) == 0) {
-        return monthLength[month];
+    int temp_day = day - wDay + 7;
+    if (temp_day <= monthLength[month]) {
+        return temp_day;
     } else {
-        return std::abs(monthLength[month] - (day + 7));
+        return temp_day - monthLength[month];
     };
 }
 
 int GetNextMonth() {
-    int monthLength [12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    int day = parts->tm_mday;
-    int month = parts->tm_mon;
-
-    if (monthLength[month] - (day + 7) > 0) {
-        return month + 1;
+    int wDay = parts->tm_wday - 1;
+    if (wDay < 0) {
+        wDay = 7;
+    };
+    
+    int temp_day = day - wDay + 7;
+    if (temp_day <= monthLength[month]) {
+        return month;
     } else {
-        if (month + 2 <= 12) {
-            return month + 2;
-        } else {
-            return 1;
-        };
+        return month + 1;
     };
 }
 
 int GetNextYear() {
-    int monthLength [12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    int day = parts->tm_mday;
-    int month = parts->tm_mon;
-    int year = parts->tm_year;
-
-    if (monthLength[month] - (day + 7) > 0) {
-        return year + 1900;
+    int wDay = parts->tm_wday - 1;
+    if (wDay < 0) {
+        wDay = 7;
+    };
+    
+    int temp_day = day - wDay + 7;
+    if (temp_day <= monthLength[month]) {
+        return year;
     } else {
-        if (month + 2 <= 12) {
-            return year + 1900;
+        if (month + 1 > 12) {
+            return year + 1;
         } else {
-            return year + 1901;
+            return year;
         };
     };
 }
