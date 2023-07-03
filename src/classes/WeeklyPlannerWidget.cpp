@@ -22,12 +22,23 @@ WeeklyPlannerWidget::WeeklyPlannerWidget(QWidget* parent) : QWidget(parent) {
     *nextMonth = GetNextMonth();
     *nextYear = GetNextYear();
 
-    std::cout << *currentDay << std::endl;
-    std::cout << *currentMonth << std::endl;
-    std::cout << *currentYear << std::endl;
-    std::cout << *nextDay << std::endl;
-    std::cout << *nextMonth << std::endl;
-    std::cout << *nextYear << std::endl;
+    QString formattedDay;
+    QString formattedMonth;
+
+    if (*currentDay < 10) {
+        formattedDay = "0" + QString::number(*currentDay);
+    } else {
+        formattedDay = QString::number(*currentDay);
+    };
+
+    if (*currentMonth < 10) {
+        formattedMonth = "0" + QString::number(*currentMonth);
+    } else {
+        formattedMonth = QString::number(*currentMonth);
+    };
+
+    QLabel* dateLabel = this->ui.WeekPlanDate;
+    (*dateLabel).setText("This week plan start the " + formattedDay + "/" + formattedMonth + "/" + QString::number(*currentYear));
 }
 
 WeeklyPlannerWidget::~WeeklyPlannerWidget() {
