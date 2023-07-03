@@ -12,6 +12,7 @@ class WeeklyPlannerWidget : public QWidget {
         ~WeeklyPlannerWidget();
     private:
         Ui::WeeklyPlannerWidget ui;
+        void SwitchWeeklyPlanner(bool value);
     protected slots:
         void CancelButtonClicked();
         void SaveButtonClicked();

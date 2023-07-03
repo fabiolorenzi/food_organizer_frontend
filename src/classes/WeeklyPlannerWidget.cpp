@@ -11,6 +11,7 @@ int* currentYear = new int();
 int* nextDay = new int();
 int* nextMonth = new int();
 int* nextYear = new int();
+bool* isCurrentPlan = new bool();
 
 WeeklyPlannerWidget::WeeklyPlannerWidget(QWidget* parent) : QWidget(parent) {
     ui.setupUi(this);
@@ -21,24 +22,9 @@ WeeklyPlannerWidget::WeeklyPlannerWidget(QWidget* parent) : QWidget(parent) {
     *nextDay = GetNextDay();
     *nextMonth = GetNextMonth();
     *nextYear = GetNextYear();
+    *isCurrentPlan = true;
 
-    QString formattedDay;
-    QString formattedMonth;
-
-    if (*currentDay < 10) {
-        formattedDay = "0" + QString::number(*currentDay);
-    } else {
-        formattedDay = QString::number(*currentDay);
-    };
-
-    if (*currentMonth < 10) {
-        formattedMonth = "0" + QString::number(*currentMonth);
-    } else {
-        formattedMonth = QString::number(*currentMonth);
-    };
-
-    QLabel* dateLabel = this->ui.WeekPlanDate;
-    (*dateLabel).setText("This week plan start the " + formattedDay + "/" + formattedMonth + "/" + QString::number(*currentYear));
+    SwitchWeeklyPlanner(*isCurrentPlan);
 }
 
 WeeklyPlannerWidget::~WeeklyPlannerWidget() {
@@ -49,6 +35,7 @@ WeeklyPlannerWidget::~WeeklyPlannerWidget() {
     delete nextDay;
     delete nextMonth;
     delete nextYear;
+    delete isCurrentPlan;
 }
 
 void WeeklyPlannerWidget::CancelButtonClicked() {
@@ -64,7 +51,40 @@ void WeeklyPlannerWidget::SaveButtonClicked() {
 }
 
 void WeeklyPlannerWidget::WeekSelectorButtonClicked() {
-    QMessageBox msg;
-    msg.setText("Week selector button clicked");
-    msg.exec();
+    *isCurrentPlan = !*isCurrentPlan;
+    SwitchWeeklyPlanner(*isCurrentPlan);
+}
+
+void WeeklyPlannerWidget::SwitchWeeklyPlanner(bool currentState) {
+    QString formattedDay;
+    QString formattedMonth;
+
+    int day {};
+    int month {};
+    int year {};
+
+    if (currentState) {
+        day = *currentDay;
+        month = *currentMonth;
+        year = *currentYear;
+    } else {
+        day = *nextDay;
+        month = *nextMonth;
+        year = *nextYear;
+    };
+
+    if (day < 10) {
+        formattedDay = "0" + QString::number(day);
+    } else {
+        formattedDay = QString::number(day);
+    };
+
+    if (month < 10) {
+        formattedMonth = "0" + QString::number(month);
+    } else {
+        formattedMonth = QString::number(month);
+    };
+
+    QLabel* dateLabel = this->ui.WeekPlanDate;
+    (*dateLabel).setText("This week plan start the " + formattedDay + "/" + formattedMonth + "/" + QString::number(year));
 }
