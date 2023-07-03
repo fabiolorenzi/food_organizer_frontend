@@ -53,9 +53,11 @@ WeeklyPlannerWidget::~WeeklyPlannerWidget() {
 }
 
 void WeeklyPlannerWidget::CancelButtonClicked() {
-    QMessageBox msg;
-    msg.setText("Cancel button clicked");
-    msg.exec();
+    if (*isCurrentPlan) {
+        GetWeeklyPlan(*currentDay, *currentMonth, *currentYear);
+    } else {
+        GetWeeklyPlan(*nextDay, *nextMonth, *nextYear);
+    };
 }
 
 void WeeklyPlannerWidget::SaveButtonClicked() {
@@ -132,6 +134,27 @@ void WeeklyPlannerWidget::GetWeeklyPlan(int day, int month, int year) {
     QLabel* sundayDLabel = this->ui.SundayD;
     QPushButton* cancelButton = this->ui.CancelButton;
     QPushButton* weekSelectorButton = this->ui.WeekSelectorButton;
+    QLineEdit* mondayBInput = this->ui.MondayBInput;
+    QLineEdit* mondayLInput = this->ui.MondayLInput;
+    QLineEdit* mondayDInput = this->ui.MondayDInput;
+    QLineEdit* tuesdayBInput = this->ui.TuesdayBInput;
+    QLineEdit* tuesdayLInput = this->ui.TuesdayLInput;
+    QLineEdit* tuesdayDInput = this->ui.TuesdayDInput;
+    QLineEdit* wednesdayBInput = this->ui.WednesdayBInput;
+    QLineEdit* wednesdayLInput = this->ui.WednesdayLInput;
+    QLineEdit* wednesdayDInput = this->ui.WednesdayDInput;
+    QLineEdit* thursdayBInput = this->ui.ThursdayBInput;
+    QLineEdit* thursdayLInput = this->ui.ThursdayLInput;
+    QLineEdit* thursdayDInput = this->ui.ThursdayDInput;
+    QLineEdit* fridayBInput = this->ui.FridayBInput;
+    QLineEdit* fridayLInput = this->ui.FridayLInput;
+    QLineEdit* fridayDInput = this->ui.FridayDInput;
+    QLineEdit* saturdayBInput = this->ui.SaturdayBInput;
+    QLineEdit* saturdayLInput = this->ui.SaturdayLInput;
+    QLineEdit* saturdayDInput = this->ui.SaturdayDInput;
+    QLineEdit* sundayBInput = this->ui.SundayBInput;
+    QLineEdit* sundayLInput = this->ui.SundayLInput;
+    QLineEdit* sundayDInput = this->ui.SundayDInput;
 
     mondayBLabel->setText("Loading...");
     mondayLLabel->setText("Loading...");
@@ -156,7 +179,27 @@ void WeeklyPlannerWidget::GetWeeklyPlan(int day, int month, int year) {
     sundayDLabel->setText("Loading...");
     cancelButton->setText("Loading...");
     weekSelectorButton->setText("Loading...");
-
+    mondayBInput->setText("");
+    mondayLInput->setText("");
+    mondayDInput->setText("");
+    tuesdayBInput->setText("");
+    tuesdayLInput->setText("");
+    tuesdayDInput->setText("");
+    wednesdayBInput->setText("");
+    wednesdayLInput->setText("");
+    wednesdayDInput->setText("");
+    thursdayBInput->setText("");
+    thursdayLInput->setText("");
+    thursdayDInput->setText("");
+    fridayBInput->setText("");
+    fridayLInput->setText("");
+    fridayDInput->setText("");
+    saturdayBInput->setText("");
+    saturdayLInput->setText("");
+    saturdayDInput->setText("");
+    sundayBInput->setText("");
+    sundayLInput->setText("");
+    sundayDInput->setText("");
 
     QString formattedDay;
     QString formattedMonth;
