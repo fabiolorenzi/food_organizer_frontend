@@ -67,6 +67,11 @@ void WeeklyPlannerWidget::SaveButtonClicked() {
 void WeeklyPlannerWidget::WeekSelectorButtonClicked() {
     *isCurrentPlan = !*isCurrentPlan;
     SwitchWeeklyPlanner(*isCurrentPlan);
+    if (*isCurrentPlan) {
+        GetWeeklyPlan(*currentDay, *currentMonth, *currentYear);
+    } else {
+        GetWeeklyPlan(*nextDay, *nextMonth, *nextYear);
+    };
 }
 
 void WeeklyPlannerWidget::SwitchWeeklyPlanner(bool currentState) {
@@ -126,6 +131,7 @@ void WeeklyPlannerWidget::GetWeeklyPlan(int day, int month, int year) {
     QLabel* sundayLLabel = this->ui.SundayL;
     QLabel* sundayDLabel = this->ui.SundayD;
     QPushButton* cancelButton = this->ui.CancelButton;
+    QPushButton* weekSelectorButton = this->ui.WeekSelectorButton;
 
     mondayBLabel->setText("Loading...");
     mondayLLabel->setText("Loading...");
@@ -149,6 +155,8 @@ void WeeklyPlannerWidget::GetWeeklyPlan(int day, int month, int year) {
     sundayLLabel->setText("Loading...");
     sundayDLabel->setText("Loading...");
     cancelButton->setText("Loading...");
+    weekSelectorButton->setText("Loading...");
+
 
     QString formattedDay;
     QString formattedMonth;
@@ -188,8 +196,6 @@ void WeeklyPlannerWidget::GetRequestFinished(QNetworkReply* reply) {
     QVariant responseStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
 
     QJsonDocument json = QJsonDocument::fromJson(responseData);
-    //qDebug() << json[0]["friday_breakfast"];
-    //QJsonObject replyObject = json.object();
 
     if (responseStatus == 403 || responseStatus == 500) {
         QMessageBox msg;
@@ -223,6 +229,7 @@ void WeeklyPlannerWidget::GetRequestFinished(QNetworkReply* reply) {
         QLabel* sundayLLabel = this->ui.SundayL;
         QLabel* sundayDLabel = this->ui.SundayD;
         QPushButton* cancelButton = this->ui.CancelButton;
+        QPushButton* weekSelectorButton = this->ui.WeekSelectorButton;
         QLineEdit* mondayBInput = this->ui.MondayBInput;
         QLineEdit* mondayLInput = this->ui.MondayLInput;
         QLineEdit* mondayDInput = this->ui.MondayDInput;
@@ -267,6 +274,11 @@ void WeeklyPlannerWidget::GetRequestFinished(QNetworkReply* reply) {
         sundayLLabel->setText("Sunday lunch");
         sundayDLabel->setText("Sunday dinner");
         cancelButton->setText("Cancel");
+        if (*isCurrentPlan) {
+            weekSelectorButton->setText("Next week");
+        } else {
+            weekSelectorButton->setText("Previous week");
+        };
         mondayBInput->setText(json[0]["monday_breakfast"].toString());
         mondayLInput->setText(json[0]["monday_lunch"].toString());
         mondayDInput->setText(json[0]["monday_dinner"].toString());
