@@ -61,9 +61,13 @@ void WeeklyPlannerWidget::CancelButtonClicked() {
 }
 
 void WeeklyPlannerWidget::SaveButtonClicked() {
-    QMessageBox msg;
-    msg.setText("Save button clicked");
-    msg.exec();
+    if ((*isCurrentPlan && *currentPlanId > 0) || (!*isCurrentPlan && *nextPlanId > 0)) {
+        QMessageBox msg;
+        msg.setText("Save button clicked");
+        msg.exec();
+    } else {
+        CreateWeeklyPlan();
+    };
 }
 
 void WeeklyPlannerWidget::WeekSelectorButtonClicked() {
@@ -108,6 +112,146 @@ void WeeklyPlannerWidget::SwitchWeeklyPlanner(bool currentState) {
 
     QLabel* dateLabel = this->ui.WeekPlanDate;
     (*dateLabel).setText("This week plan start the " + formattedDay + "/" + formattedMonth + "/" + QString::number(year));
+}
+
+void WeeklyPlannerWidget::CreateWeeklyPlan() {
+    QLabel* mondayBLabel = this->ui.MondayB;
+    QLabel* mondayLLabel = this->ui.MondayL;
+    QLabel* mondayDLabel = this->ui.MondayD;
+    QLabel* tuesdayBLabel = this->ui.TuesdayB;
+    QLabel* tuesdayLLabel = this->ui.TuesdayL;
+    QLabel* tuesdayDLabel = this->ui.TuesdayD;
+    QLabel* wednesdayBLabel = this->ui.WednesdayB;
+    QLabel* wednesdayLLabel = this->ui.WednesdayL;
+    QLabel* wednesdayDLabel = this->ui.WednesdayD;
+    QLabel* thursdayBLabel = this->ui.ThursdayB;
+    QLabel* thursdayLLabel = this->ui.ThursdayL;
+    QLabel* thursdayDLabel = this->ui.ThursdayD;
+    QLabel* fridayBLabel = this->ui.FridayB;
+    QLabel* fridayLLabel = this->ui.FridayL;
+    QLabel* fridayDLabel = this->ui.FridayD;
+    QLabel* saturdayBLabel = this->ui.SaturdayB;
+    QLabel* saturdayLLabel = this->ui.SaturdayL;
+    QLabel* saturdayDLabel = this->ui.SaturdayD;
+    QLabel* sundayBLabel = this->ui.SundayB;
+    QLabel* sundayLLabel = this->ui.SundayL;
+    QLabel* sundayDLabel = this->ui.SundayD;
+    QPushButton* cancelButton = this->ui.CancelButton;
+    QPushButton* saveButton = this->ui.SaveButton;
+    QPushButton* weekSelectorButton = this->ui.WeekSelectorButton;
+    QLineEdit* mondayBInput = this->ui.MondayBInput;
+    QLineEdit* mondayLInput = this->ui.MondayLInput;
+    QLineEdit* mondayDInput = this->ui.MondayDInput;
+    QLineEdit* tuesdayBInput = this->ui.TuesdayBInput;
+    QLineEdit* tuesdayLInput = this->ui.TuesdayLInput;
+    QLineEdit* tuesdayDInput = this->ui.TuesdayDInput;
+    QLineEdit* wednesdayBInput = this->ui.WednesdayBInput;
+    QLineEdit* wednesdayLInput = this->ui.WednesdayLInput;
+    QLineEdit* wednesdayDInput = this->ui.WednesdayDInput;
+    QLineEdit* thursdayBInput = this->ui.ThursdayBInput;
+    QLineEdit* thursdayLInput = this->ui.ThursdayLInput;
+    QLineEdit* thursdayDInput = this->ui.ThursdayDInput;
+    QLineEdit* fridayBInput = this->ui.FridayBInput;
+    QLineEdit* fridayLInput = this->ui.FridayLInput;
+    QLineEdit* fridayDInput = this->ui.FridayDInput;
+    QLineEdit* saturdayBInput = this->ui.SaturdayBInput;
+    QLineEdit* saturdayLInput = this->ui.SaturdayLInput;
+    QLineEdit* saturdayDInput = this->ui.SaturdayDInput;
+    QLineEdit* sundayBInput = this->ui.SundayBInput;
+    QLineEdit* sundayLInput = this->ui.SundayLInput;
+    QLineEdit* sundayDInput = this->ui.SundayDInput;
+
+    mondayBLabel->setText("Loading...");
+    mondayLLabel->setText("Loading...");
+    mondayDLabel->setText("Loading...");
+    tuesdayBLabel->setText("Loading...");
+    tuesdayLLabel->setText("Loading...");
+    tuesdayDLabel->setText("Loading...");
+    wednesdayBLabel->setText("Loading...");
+    wednesdayLLabel->setText("Loading...");
+    wednesdayDLabel->setText("Loading...");
+    thursdayBLabel->setText("Loading...");
+    thursdayLLabel->setText("Loading...");
+    thursdayDLabel->setText("Loading...");
+    fridayBLabel->setText("Loading...");
+    fridayLLabel->setText("Loading...");
+    fridayDLabel->setText("Loading...");
+    saturdayBLabel->setText("Loading...");
+    saturdayLLabel->setText("Loading...");
+    saturdayDLabel->setText("Loading...");
+    sundayBLabel->setText("Loading...");
+    sundayLLabel->setText("Loading...");
+    sundayDLabel->setText("Loading...");
+    saveButton->setText("Loading...");
+
+    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+    connect(manager, &QNetworkAccessManager::finished, this, &WeeklyPlannerWidget::PostRequestFinished);
+
+    QUrl url("https://food-organizer-backend.hopto.org/api/v1/week-plans");
+    QNetworkRequest request(url);
+
+    std::ifstream authFile("build/auth.txt");
+    std::string token;
+    authFile >> token;
+    QString QToken = QString::fromStdString("Bearer " + token);
+
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+    request.setRawHeader(QByteArrayLiteral("Authorization"),QToken.toUtf8());
+
+    QString formattedDay;
+    QString formattedMonth;
+
+    int day {};
+    int month {};
+    int year {};
+
+    if (*isCurrentPlan) {
+        day = *currentDay;
+        month = *currentMonth;
+        year = *currentYear;
+    } else {
+        day = *nextDay;
+        month = *nextMonth;
+        year = *nextYear;
+    };
+
+    if (day < 10) {
+        formattedDay = "0" + QString::number(day);
+    } else {
+        formattedDay = QString::number(day);
+    };
+
+    if (month < 10) {
+        formattedMonth = "0" + QString::number(month);
+    } else {
+        formattedMonth = QString::number(month);
+    };
+
+    QUrlQuery params;
+    params.addQueryItem("monday_breakfast", (*mondayBInput).text());
+    params.addQueryItem("monday_lunch", (*mondayLInput).text());
+    params.addQueryItem("monday_dinner", (*mondayDInput).text());
+    params.addQueryItem("tuesday_breakfast", (*tuesdayBInput).text());
+    params.addQueryItem("tuesday_lunch", (*tuesdayLInput).text());
+    params.addQueryItem("tuesday_dinner", (*tuesdayDInput).text());
+    params.addQueryItem("wednesday_breakfast", (*wednesdayBInput).text());
+    params.addQueryItem("wednesday_lunch", (*wednesdayLInput).text());
+    params.addQueryItem("wednesday_dinner", (*wednesdayDInput).text());
+    params.addQueryItem("thursday_breakfast", (*thursdayBInput).text());
+    params.addQueryItem("thursday_lunch", (*thursdayLInput).text());
+    params.addQueryItem("thursday_dinner", (*thursdayDInput).text());
+    params.addQueryItem("friday_breakfast", (*fridayBInput).text());
+    params.addQueryItem("friday_lunch", (*fridayLInput).text());
+    params.addQueryItem("friday_dinner", (*fridayDInput).text());
+    params.addQueryItem("saturday_breakfast", (*saturdayBInput).text());
+    params.addQueryItem("saturday_lunch", (*saturdayLInput).text());
+    params.addQueryItem("saturday_dinner", (*saturdayDInput).text());
+    params.addQueryItem("sunday_breakfast", (*sundayBInput).text());
+    params.addQueryItem("sunday_lunch", (*sundayLInput).text());
+    params.addQueryItem("sunday_dinner", (*sundayDInput).text());
+    params.addQueryItem("monday_position", formattedDay + "-" + formattedMonth + "-" + QString::number(year));
+
+    manager->post(request, params.toString(QUrl::FullyEncoded).toUtf8());
 }
 
 void WeeklyPlannerWidget::GetWeeklyPlan(int day, int month, int year) {
@@ -359,4 +503,22 @@ void WeeklyPlannerWidget::GetRequestFinished(QNetworkReply* reply) {
             saveButton->setText("Create");
         };
     };
+}
+
+void WeeklyPlannerWidget::PostRequestFinished(QNetworkReply* reply) {
+    QByteArray response_data = reply->readAll();
+    QJsonDocument json = QJsonDocument::fromJson(response_data);
+    QJsonObject replyObject = json.object();
+    reply->deleteLater();
+
+    if (replyObject.value("status") != 200) {
+        QMessageBox msg;
+        msg.setText("Weekly plan creation failed. Please try again");
+        msg.exec();
+    } else {
+        QMessageBox msg;
+        msg.setText("Weekly plan created successfully");
+        msg.exec();
+    };
+    CancelButtonClicked();
 }
