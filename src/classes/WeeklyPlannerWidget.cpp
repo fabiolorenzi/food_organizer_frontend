@@ -133,6 +133,7 @@ void WeeklyPlannerWidget::GetWeeklyPlan(int day, int month, int year) {
     QLabel* sundayLLabel = this->ui.SundayL;
     QLabel* sundayDLabel = this->ui.SundayD;
     QPushButton* cancelButton = this->ui.CancelButton;
+    QPushButton* saveButton = this->ui.SaveButton;
     QPushButton* weekSelectorButton = this->ui.WeekSelectorButton;
     QLineEdit* mondayBInput = this->ui.MondayBInput;
     QLineEdit* mondayLInput = this->ui.MondayLInput;
@@ -178,6 +179,7 @@ void WeeklyPlannerWidget::GetWeeklyPlan(int day, int month, int year) {
     sundayLLabel->setText("Loading...");
     sundayDLabel->setText("Loading...");
     cancelButton->setText("Loading...");
+    saveButton->setText("Loading...");
     weekSelectorButton->setText("Loading...");
     mondayBInput->setText("");
     mondayLInput->setText("");
@@ -272,6 +274,7 @@ void WeeklyPlannerWidget::GetRequestFinished(QNetworkReply* reply) {
         QLabel* sundayLLabel = this->ui.SundayL;
         QLabel* sundayDLabel = this->ui.SundayD;
         QPushButton* cancelButton = this->ui.CancelButton;
+        QPushButton* saveButton = this->ui.SaveButton;
         QPushButton* weekSelectorButton = this->ui.WeekSelectorButton;
         QLineEdit* mondayBInput = this->ui.MondayBInput;
         QLineEdit* mondayLInput = this->ui.MondayLInput;
@@ -345,9 +348,15 @@ void WeeklyPlannerWidget::GetRequestFinished(QNetworkReply* reply) {
         sundayDInput->setText(json[0]["sunday_dinner"].toString());
 
         if (*isCurrentPlan) {
-            *currentPlanId = json[0]["id"].toInt();
+            *currentPlanId = json[0]["id"].toInt() || 0;
         } else {
-            *nextPlanId = json[0]["id"].toInt();
+            *nextPlanId = json[0]["id"].toInt() || 0;
+        };
+
+        if ((*isCurrentPlan && *currentPlanId > 0) || (!*isCurrentPlan && *nextPlanId > 0)) {
+            saveButton->setText("Update");
+        } else {
+            saveButton->setText("Create");
         };
     };
 }
