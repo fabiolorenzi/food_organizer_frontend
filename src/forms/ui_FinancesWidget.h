@@ -32,6 +32,10 @@ public:
     QLabel *Title;
     QFrame *BottomFrame;
     QVBoxLayout *verticalLayout;
+    QFrame *ListFrame;
+    QGridLayout *gridLayout_3;
+    QFrame *ListFrameLine;
+    QLabel *PageNumberLabel;
     QFrame *InputsFrame;
     QGridLayout *gridLayout_4;
     QFormLayout *Inputs;
@@ -81,6 +85,33 @@ public:
         BottomFrame->setFrameShadow(QFrame::Raised);
         verticalLayout = new QVBoxLayout(BottomFrame);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        ListFrame = new QFrame(BottomFrame);
+        ListFrame->setObjectName(QString::fromUtf8("ListFrame"));
+        ListFrame->setFrameShape(QFrame::StyledPanel);
+        ListFrame->setFrameShadow(QFrame::Raised);
+        gridLayout_3 = new QGridLayout(ListFrame);
+        gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
+        ListFrameLine = new QFrame(ListFrame);
+        ListFrameLine->setObjectName(QString::fromUtf8("ListFrameLine"));
+        ListFrameLine->setFrameShape(QFrame::StyledPanel);
+        ListFrameLine->setFrameShadow(QFrame::Raised);
+
+        gridLayout_3->addWidget(ListFrameLine, 1, 0, 1, 1);
+
+        PageNumberLabel = new QLabel(ListFrame);
+        PageNumberLabel->setObjectName(QString::fromUtf8("PageNumberLabel"));
+        QFont font1;
+        font1.setPointSize(8);
+        font1.setBold(true);
+        font1.setWeight(75);
+        PageNumberLabel->setFont(font1);
+        PageNumberLabel->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        gridLayout_3->addWidget(PageNumberLabel, 0, 0, 1, 1);
+
+
+        verticalLayout->addWidget(ListFrame);
+
         InputsFrame = new QFrame(BottomFrame);
         InputsFrame->setObjectName(QString::fromUtf8("InputsFrame"));
         InputsFrame->setFrameShape(QFrame::StyledPanel);
@@ -169,6 +200,7 @@ public:
     {
         FinancesWidget->setWindowTitle(QCoreApplication::translate("FinancesWidget", "Form", nullptr));
         Title->setText(QCoreApplication::translate("FinancesWidget", "Finances", nullptr));
+        PageNumberLabel->setText(QCoreApplication::translate("FinancesWidget", "Page 1 / 1", nullptr));
         TitleLabel->setText(QCoreApplication::translate("FinancesWidget", "Title", nullptr));
         DescriptionLabel->setText(QCoreApplication::translate("FinancesWidget", "Description", nullptr));
         PriceLabel->setText(QCoreApplication::translate("FinancesWidget", "Price (\302\243)", nullptr));
