@@ -249,7 +249,7 @@ void WeeklyPlannerWidget::CreateWeeklyPlan() {
     params.addQueryItem("sunday_breakfast", (*sundayBInput).text());
     params.addQueryItem("sunday_lunch", (*sundayLInput).text());
     params.addQueryItem("sunday_dinner", (*sundayDInput).text());
-    params.addQueryItem("monday_position", formattedDay + "-" + formattedMonth + "-" + QString::number(year));
+    params.addQueryItem("monday_position", QString::number(year) + "-" + formattedMonth + "-" + formattedDay);
 
     manager->post(request, params.toString(QUrl::FullyEncoded).toUtf8());
 }
@@ -508,12 +508,13 @@ void WeeklyPlannerWidget::GetRequestFinished(QNetworkReply* reply) {
 void WeeklyPlannerWidget::PostRequestFinished(QNetworkReply* reply) {
     QByteArray response_data = reply->readAll();
     QJsonDocument json = QJsonDocument::fromJson(response_data);
+    QVariant responseStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
     QJsonObject replyObject = json.object();
     reply->deleteLater();
 
-    if (replyObject.value("status") != 200) {
+    if (responseStatus != 201) {
         QMessageBox msg;
-        msg.setText("Weekly plan creation failed. Please try again");
+        msg.setText("Weekly plan creation failed, maybe because you left some empty inputs. Please try again");
         msg.exec();
     } else {
         QMessageBox msg;
