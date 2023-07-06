@@ -23,123 +23,123 @@ QT_BEGIN_NAMESPACE
 class Ui_FinanceSingleFrame
 {
 public:
-    QVBoxLayout *verticalLayout;
-    QFrame *FirstLine;
     QHBoxLayout *horizontalLayout;
+    QFrame *FirstLine;
+    QVBoxLayout *verticalLayout_3;
     QLabel *TitleLabel;
     QLabel *TitleValue;
     QFrame *SecondLine;
-    QHBoxLayout *horizontalLayout_4;
+    QVBoxLayout *verticalLayout_4;
     QLabel *DescriptionLabel;
     QLabel *DescriptionValue;
     QFrame *ThirdLine;
-    QHBoxLayout *horizontalLayout_3;
+    QVBoxLayout *verticalLayout_5;
     QLabel *PriceLabel;
     QLabel *PriceValue;
     QFrame *FourthLine;
-    QHBoxLayout *horizontalLayout_2;
+    QVBoxLayout *verticalLayout_6;
     QLabel *DateLabel;
     QLabel *DateValue;
     QFrame *ButtonLine;
-    QHBoxLayout *horizontalLayout_5;
+    QVBoxLayout *verticalLayout_2;
     QPushButton *DeleteButton;
 
     void setupUi(QWidget *FinanceSingleFrame)
     {
         if (FinanceSingleFrame->objectName().isEmpty())
             FinanceSingleFrame->setObjectName(QString::fromUtf8("FinanceSingleFrame"));
-        FinanceSingleFrame->resize(400, 300);
-        verticalLayout = new QVBoxLayout(FinanceSingleFrame);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        FinanceSingleFrame->resize(550, 99);
+        horizontalLayout = new QHBoxLayout(FinanceSingleFrame);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         FirstLine = new QFrame(FinanceSingleFrame);
         FirstLine->setObjectName(QString::fromUtf8("FirstLine"));
         FirstLine->setFrameShape(QFrame::StyledPanel);
         FirstLine->setFrameShadow(QFrame::Raised);
-        horizontalLayout = new QHBoxLayout(FirstLine);
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        verticalLayout_3 = new QVBoxLayout(FirstLine);
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         TitleLabel = new QLabel(FirstLine);
         TitleLabel->setObjectName(QString::fromUtf8("TitleLabel"));
 
-        horizontalLayout->addWidget(TitleLabel);
+        verticalLayout_3->addWidget(TitleLabel);
 
         TitleValue = new QLabel(FirstLine);
         TitleValue->setObjectName(QString::fromUtf8("TitleValue"));
 
-        horizontalLayout->addWidget(TitleValue);
+        verticalLayout_3->addWidget(TitleValue);
 
 
-        verticalLayout->addWidget(FirstLine);
+        horizontalLayout->addWidget(FirstLine);
 
         SecondLine = new QFrame(FinanceSingleFrame);
         SecondLine->setObjectName(QString::fromUtf8("SecondLine"));
         SecondLine->setFrameShape(QFrame::StyledPanel);
         SecondLine->setFrameShadow(QFrame::Raised);
-        horizontalLayout_4 = new QHBoxLayout(SecondLine);
-        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        verticalLayout_4 = new QVBoxLayout(SecondLine);
+        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         DescriptionLabel = new QLabel(SecondLine);
         DescriptionLabel->setObjectName(QString::fromUtf8("DescriptionLabel"));
 
-        horizontalLayout_4->addWidget(DescriptionLabel);
+        verticalLayout_4->addWidget(DescriptionLabel);
 
         DescriptionValue = new QLabel(SecondLine);
         DescriptionValue->setObjectName(QString::fromUtf8("DescriptionValue"));
 
-        horizontalLayout_4->addWidget(DescriptionValue);
+        verticalLayout_4->addWidget(DescriptionValue);
 
 
-        verticalLayout->addWidget(SecondLine);
+        horizontalLayout->addWidget(SecondLine);
 
         ThirdLine = new QFrame(FinanceSingleFrame);
         ThirdLine->setObjectName(QString::fromUtf8("ThirdLine"));
         ThirdLine->setFrameShape(QFrame::StyledPanel);
         ThirdLine->setFrameShadow(QFrame::Raised);
-        horizontalLayout_3 = new QHBoxLayout(ThirdLine);
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        verticalLayout_5 = new QVBoxLayout(ThirdLine);
+        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
         PriceLabel = new QLabel(ThirdLine);
         PriceLabel->setObjectName(QString::fromUtf8("PriceLabel"));
 
-        horizontalLayout_3->addWidget(PriceLabel);
+        verticalLayout_5->addWidget(PriceLabel);
 
         PriceValue = new QLabel(ThirdLine);
         PriceValue->setObjectName(QString::fromUtf8("PriceValue"));
 
-        horizontalLayout_3->addWidget(PriceValue);
+        verticalLayout_5->addWidget(PriceValue);
 
 
-        verticalLayout->addWidget(ThirdLine);
+        horizontalLayout->addWidget(ThirdLine);
 
         FourthLine = new QFrame(FinanceSingleFrame);
         FourthLine->setObjectName(QString::fromUtf8("FourthLine"));
         FourthLine->setFrameShape(QFrame::StyledPanel);
         FourthLine->setFrameShadow(QFrame::Raised);
-        horizontalLayout_2 = new QHBoxLayout(FourthLine);
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        verticalLayout_6 = new QVBoxLayout(FourthLine);
+        verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
         DateLabel = new QLabel(FourthLine);
         DateLabel->setObjectName(QString::fromUtf8("DateLabel"));
 
-        horizontalLayout_2->addWidget(DateLabel);
+        verticalLayout_6->addWidget(DateLabel);
 
         DateValue = new QLabel(FourthLine);
         DateValue->setObjectName(QString::fromUtf8("DateValue"));
 
-        horizontalLayout_2->addWidget(DateValue);
+        verticalLayout_6->addWidget(DateValue);
 
 
-        verticalLayout->addWidget(FourthLine);
+        horizontalLayout->addWidget(FourthLine);
 
         ButtonLine = new QFrame(FinanceSingleFrame);
         ButtonLine->setObjectName(QString::fromUtf8("ButtonLine"));
         ButtonLine->setFrameShape(QFrame::StyledPanel);
         ButtonLine->setFrameShadow(QFrame::Raised);
-        horizontalLayout_5 = new QHBoxLayout(ButtonLine);
-        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        verticalLayout_2 = new QVBoxLayout(ButtonLine);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         DeleteButton = new QPushButton(ButtonLine);
         DeleteButton->setObjectName(QString::fromUtf8("DeleteButton"));
 
-        horizontalLayout_5->addWidget(DeleteButton);
+        verticalLayout_2->addWidget(DeleteButton);
 
 
-        verticalLayout->addWidget(ButtonLine);
+        horizontalLayout->addWidget(ButtonLine);
 
 
         retranslateUi(FinanceSingleFrame);

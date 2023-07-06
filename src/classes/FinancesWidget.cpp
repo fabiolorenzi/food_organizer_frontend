@@ -89,6 +89,7 @@ void FinancesWidget::PostRequestFinished(QNetworkReply* reply) {
 
     QPushButton* button = this->ui.CreateButton;
     (*button).setText("Create");
+    GetFinancesData();
 }
 
 void FinancesWidget::GetFinancesData() {
@@ -117,14 +118,14 @@ void FinancesWidget::GetRequestFinished(QNetworkReply* reply) {
 
     QJsonArray jsonArray = json.array();
     QFrame* listArray = this->ui.ListFrameLine;
-    auto layout = new QVBoxLayout();
+    QVBoxLayout* listArrayLayout = new QVBoxLayout();
 
     for (int x {}; x < jsonArray.size(); ++x) {
         QJsonValue singleJson = jsonArray[x];
         FinanceSingleFrame* singleFinance = new FinanceSingleFrame();
         singleFinance->InitializeFinanceSingleFrame(singleJson["id"].toInt(), singleJson["title"].toString(), singleJson["description"].toString(), singleJson["price"].toString(), singleJson["shopping_date"].toString());
-        layout->addWidget(singleFinance);
+        listArrayLayout->addWidget(singleFinance);
     };
 
-    listArray->setLayout(layout);
+    listArray->setLayout(listArrayLayout);
 }
