@@ -12,10 +12,11 @@ class FinancesWidget : public QWidget {
         ~FinancesWidget();
     private:
         Ui::FinancesWidget ui;
-        void CreateWeeklyPlan();
     protected slots:
         void CancelButtonClicked();
         void CreateButtonClicked();
+        void GetFinancesData();
+        void GetRequestFinished(QNetworkReply*);
         void PostRequestFinished(QNetworkReply*);
 };
 

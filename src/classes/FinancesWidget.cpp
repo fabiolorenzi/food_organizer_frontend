@@ -2,14 +2,17 @@
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
+#include <QtCore/QJsonArray>
 #include <QUrlQuery>
 #include <fstream>
 #include <chrono>
 #include <iostream>
 #include "FinancesWidget.h"
+#include "FinanceSingleFrame.h"
 
 FinancesWidget::FinancesWidget(QWidget* parent) : QWidget(parent) {
     ui.setupUi(this);
+    GetFinancesData();
 }
 
 FinancesWidget::~FinancesWidget() {
@@ -86,4 +89,42 @@ void FinancesWidget::PostRequestFinished(QNetworkReply* reply) {
 
     QPushButton* button = this->ui.CreateButton;
     (*button).setText("Create");
+}
+
+void FinancesWidget::GetFinancesData() {
+    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+    connect(manager, &QNetworkAccessManager::finished, this, &FinancesWidget::GetRequestFinished);
+
+    std::ifstream authFile("build/auth.txt");
+    std::string token;
+    authFile >> token;
+    QString QToken = QString::fromStdString("Bearer " + token);
+
+    QUrl url("https://food-organizer-backend.hopto.org/api/v1/expenses");
+    QNetworkRequest request(url);
+
+    request.setRawHeader(QByteArrayLiteral("Authorization"),QToken.toUtf8());
+
+    manager->get(request);
+}
+
+void FinancesWidget::GetRequestFinished(QNetworkReply* reply) {
+    QByteArray responseData = reply->readAll();
+    QVariant responseStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+    QJsonDocument json = QJsonDocument::fromJson(responseData);
+
+    reply->deleteLater();
+
+    QJsonArray jsonArray = json.array();
+    QFrame* listArray = this->ui.ListFrameLine;
+    auto layout = new QVBoxLayout();
+
+    for (int x {}; x < jsonArray.size(); ++x) {
+        QJsonValue singleJson = jsonArray[x];
+        FinanceSingleFrame* singleFinance = new FinanceSingleFrame();
+        singleFinance->InitializeFinanceSingleFrame(singleJson["id"].toInt(), singleJson["title"].toString(), singleJson["description"].toString(), singleJson["price"].toString(), singleJson["shopping_date"].toString());
+        layout->addWidget(singleFinance);
+    };
+
+    listArray->setLayout(layout);
 }
