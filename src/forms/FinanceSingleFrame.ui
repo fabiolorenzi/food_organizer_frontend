@@ -1,45 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SingleFinanceFrame</class>
- <widget class="QFrame" name="SingleFinanceFrame">
+ <class>FinanceSingleFrame</class>
+ <widget class="QWidget" name="FinanceSingleFrame">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>677</width>
+    <width>400</width>
     <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Frame</string>
+   <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QFrame" name="SecondLine">
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <widget class="QLabel" name="DescriptionLabel">
-        <property name="text">
-         <string>Description:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="DescriptionValue">
-        <property name="text">
-         <string>descriptionValue</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item>
     <widget class="QFrame" name="FirstLine">
      <property name="frameShape">
@@ -60,6 +34,32 @@
        <widget class="QLabel" name="TitleValue">
         <property name="text">
          <string>titleValue</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="SecondLine">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="DescriptionLabel">
+        <property name="text">
+         <string>Description:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="DescriptionValue">
+        <property name="text">
+         <string>descriptionValue</string>
         </property>
        </widget>
       </item>
@@ -102,7 +102,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QLabel" name="DateLine">
+       <widget class="QLabel" name="DateLabel">
         <property name="text">
          <string>Date:</string>
         </property>
@@ -144,15 +144,15 @@
   <connection>
    <sender>DeleteButton</sender>
    <signal>clicked()</signal>
-   <receiver>SingleFinanceFrame</receiver>
-   <slot>DeleteSingleFinance()</slot>
+   <receiver>FinanceSingleFrame</receiver>
+   <slot>show()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>338</x>
+     <x>199</x>
      <y>264</y>
     </hint>
     <hint type="destinationlabel">
-     <x>338</x>
+     <x>199</x>
      <y>149</y>
     </hint>
    </hints>
