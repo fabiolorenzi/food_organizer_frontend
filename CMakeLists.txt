@@ -26,6 +26,7 @@ add_executable(
     src/forms/DashboardWidget.ui
     src/forms/SettingsWidget.ui
     src/forms/WeeklyPlannerWidget.ui
+    src/forms/FinancesWidget.ui
     src/classes/MainWindow.cpp
     src/classes/InitialWidget.cpp
     src/classes/LoginWidget.cpp
@@ -33,6 +34,7 @@ add_executable(
     src/classes/DashboardWidget.cpp
     src/classes/SettingsWidget.cpp
     src/classes/WeeklyPlannerWidget.cpp
+    src/classes/FinancesWidget.cpp
     src/functions/DateManager.cpp
 )
 

@@ -8,6 +8,7 @@
 #include "DashboardWidget.h"
 #include "SettingsWidget.h"
 #include "WeeklyPlannerWidget.h"
+#include "FinancesWidget.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     ui.setupUi(this);
@@ -94,9 +95,8 @@ void MainWindow::StorageMenuClicked() {
 }
 
 void MainWindow::FinancesMenuClicked() {
-    QMessageBox msg;
-    msg.setText("Finances menu");
-    msg.exec();
+    FinancesWidget* financesWidget = new FinancesWidget();
+    ChangeWidget(financesWidget);
 }
 
 void MainWindow::AboutMenuClicked() {
