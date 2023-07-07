@@ -117,7 +117,7 @@ void FinancesWidget::GetRequestFinished(QNetworkReply* reply) {
     reply->deleteLater();
 
     QJsonArray jsonArray = json.array();
-    QFrame* listArray = this->ui.ListFrameLine;
+    QWidget* listArray = this->ui.ListFrameLine;
     QVBoxLayout* listArrayLayout = new QVBoxLayout();
 
     for (int x {}; x < jsonArray.size(); ++x) {
