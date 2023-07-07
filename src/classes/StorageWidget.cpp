@@ -61,8 +61,8 @@ void StorageWidget::CreateButtonClicked() {
         params.addQueryItem("expire_date", (*expireDateInput).text());
         params.addQueryItem("remaining", (*quantityInput).text());
         params.addQueryItem("measure_unit", "kg");
-        params.addQueryItem("quantity_alarm", 0);
-        params.addQueryItem("quantity_alarm_threshold", 0);
+        params.addQueryItem("quantity_alarm", QString::number(0));
+        params.addQueryItem("quantity_alarm_threshold", QString::number(0));
         
         manager->post(request, params.toString(QUrl::FullyEncoded).toUtf8());
     } else {
