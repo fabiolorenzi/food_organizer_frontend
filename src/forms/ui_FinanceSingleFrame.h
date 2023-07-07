@@ -143,7 +143,7 @@ public:
 
 
         retranslateUi(FinanceSingleFrame);
-        QObject::connect(DeleteButton, SIGNAL(clicked()), FinanceSingleFrame, SLOT(show()));
+        QObject::connect(DeleteButton, SIGNAL(clicked()), FinanceSingleFrame, SLOT(DeleteButtonClicked()));
 
         QMetaObject::connectSlotsByName(FinanceSingleFrame);
     } // setupUi

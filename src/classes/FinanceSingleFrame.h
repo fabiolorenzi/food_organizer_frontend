@@ -13,6 +13,9 @@ class FinanceSingleFrame : public QWidget {
         void InitializeFinanceSingleFrame(int _id, QString _title, QString _desc, QString _price, QString _date);
     private:
         Ui::FinanceSingleFrame ui;
+    protected slots:
+        void DeleteButtonClicked();
+        void DeleteRequestFinished(QNetworkReply*);
 };
 
 #endif

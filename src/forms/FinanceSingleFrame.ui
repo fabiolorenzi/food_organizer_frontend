@@ -145,7 +145,7 @@
    <sender>DeleteButton</sender>
    <signal>clicked()</signal>
    <receiver>FinanceSingleFrame</receiver>
-   <slot>show()</slot>
+   <slot>DeleteButtonClicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>199</x>
