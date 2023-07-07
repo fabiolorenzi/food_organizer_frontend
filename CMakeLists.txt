@@ -29,6 +29,7 @@ add_executable(
     src/forms/FinancesWidget.ui
     src/forms/FinanceSingleFrame.ui
     src/forms/StorageWidget.ui
+    src/forms/StorageSingleFrame.ui
     src/classes/MainWindow.cpp
     src/classes/InitialWidget.cpp
     src/classes/LoginWidget.cpp
@@ -39,6 +40,7 @@ add_executable(
     src/classes/FinancesWidget.cpp
     src/classes/FinanceSingleFrame.cpp
     src/classes/StorageWidget.cpp
+    src/classes/StorageSingleFrame.cpp
     src/functions/DateManager.cpp
 )
 

@@ -8,7 +8,7 @@
 #include <chrono>
 #include <iostream>
 #include "StorageWidget.h"
-//#include "StorageSingleFrame.h"
+#include "StorageSingleFrame.h"
 
 StorageWidget::StorageWidget(QWidget* parent) : QWidget(parent) {
     ui.setupUi(this);
@@ -121,17 +121,17 @@ void StorageWidget::GetRequestFinished(QNetworkReply* reply) {
 
     reply->deleteLater();
 
-    /*QJsonArray jsonArray = json.array();
+    QJsonArray jsonArray = json.array();
     QWidget* listArray = this->ui.ListFrameLine;
     QVBoxLayout* listArrayLayout = new QVBoxLayout();
 
     for (int x {}; x < jsonArray.size(); ++x) {
         QJsonValue singleJson = jsonArray[x];
-        double price = singleJson["price"].toDouble();
-        FinanceSingleFrame* singleFinance = new FinanceSingleFrame();
-        singleFinance->InitializeFinanceSingleFrame(singleJson["id"].toInt(), singleJson["title"].toString(), singleJson["description"].toString(), QString::number(price), singleJson["shopping_date"].toString());
-        listArrayLayout->addWidget(singleFinance);
+        double quantity = singleJson["remaining"].toInt();
+        StorageSingleFrame* singleStorage = new StorageSingleFrame();
+        singleStorage->InitializeStorageSingleFrame(singleJson["id"].toInt(), singleJson["name"].toString(), singleJson["position"].toString(), QString::number(quantity), singleJson["expire_date"].toString());
+        listArrayLayout->addWidget(singleStorage);
     };
 
-    listArray->setLayout(listArrayLayout);*/
+    listArray->setLayout(listArrayLayout);
 }
