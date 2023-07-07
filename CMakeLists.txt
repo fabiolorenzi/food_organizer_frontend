@@ -28,6 +28,7 @@ add_executable(
     src/forms/WeeklyPlannerWidget.ui
     src/forms/FinancesWidget.ui
     src/forms/FinanceSingleFrame.ui
+    src/forms/StorageWidget.ui
     src/classes/MainWindow.cpp
     src/classes/InitialWidget.cpp
     src/classes/LoginWidget.cpp
@@ -37,6 +38,7 @@ add_executable(
     src/classes/WeeklyPlannerWidget.cpp
     src/classes/FinancesWidget.cpp
     src/classes/FinanceSingleFrame.cpp
+    src/classes/StorageWidget.cpp
     src/functions/DateManager.cpp
 )
 

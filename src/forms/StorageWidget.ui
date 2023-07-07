@@ -1,60 +1,206 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>StorageWidget</class>
- <widget class="QWidget" name="StorageWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>400</width>
-    <height>300</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Form</string>
-  </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QFrame" name="TopFrame">
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QLabel" name="Title">
-        <property name="font">
-         <font>
-          <pointsize>18</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
+    <class>StorageWidget</class>
+    <widget class="QWidget" name="StorageWidget">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>754</width>
+                <height>593</height>
+            </rect>
         </property>
-        <property name="text">
-         <string>Storage</string>
+        <property name="windowTitle">
+            <string>Form</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-     </layout>
+        <layout class="QGridLayout" name="gridLayout">
+            <item row="0" column="0">
+                <widget class="QFrame" name="TopFrame">
+                    <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_2">
+                        <item row="0" column="0">
+                            <widget class="QLabel" name="Title">
+                                <property name="font">
+                                    <font>
+                                        <pointsize>18</pointsize>
+                                        <weight>75</weight>
+                                        <bold>true</bold>
+                                    </font>
+                                </property>
+                                <property name="text">
+                                    <string>Storage</string>
+                                </property>
+                                <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                </property>
+                            </widget>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+            <item row="1" column="0">
+                <widget class="QFrame" name="BottomFrame">
+                    <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_5">
+                        <item row="0" column="0">
+                            <widget class="QFrame" name="ListFrame">
+                                <property name="frameShape">
+                                    <enum>QFrame::StyledPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>QFrame::Raised</enum>
+                                </property>
+                                <layout class="QGridLayout" name="gridLayout_3">
+                                    <item row="0" column="0">
+                                        <widget class="QScrollArea" name="scrollArea">
+                                            <property name="widgetResizable">
+                                                <bool>true</bool>
+                                            </property>
+                                            <widget class="QWidget" name="ListFrameLine">
+                                                <property name="geometry">
+                                                    <rect>
+                                                        <x>0</x>
+                                                        <y>0</y>
+                                                        <width>694</width>
+                                                        <height>282</height>
+                                                    </rect>
+                                                </property>
+                                            </widget>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                        </item>
+                        <item row="1" column="0">
+                            <widget class="QFrame" name="InputsFrame">
+                                <property name="frameShape">
+                                    <enum>QFrame::StyledPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>QFrame::Raised</enum>
+                                </property>
+                                <layout class="QGridLayout" name="gridLayout_4">
+                                    <item row="0" column="0">
+                                        <layout class="QFormLayout" name="Inputs">
+                                            <item row="0" column="0">
+                                                <widget class="QLineEdit" name="NameInput" />
+                                            </item>
+                                            <item row="0" column="1">
+                                                <widget class="QLabel" name="NameLabel">
+                                                    <property name="text">
+                                                        <string>Name</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="1" column="1">
+                                                <widget class="QLabel" name="PositionLabel">
+                                                    <property name="text">
+                                                        <string>Position</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="2" column="0">
+                                                <widget class="QLineEdit" name="QuantityInput" />
+                                            </item>
+                                            <item row="2" column="1">
+                                                <widget class="QLabel" name="QuantityLabel">
+                                                    <property name="text">
+                                                        <string>Quantity</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="3" column="0">
+                                                <widget class="QLineEdit" name="ExpireDateInput" />
+                                            </item>
+                                            <item row="3" column="1">
+                                                <widget class="QLabel" name="ExpireDateLabel">
+                                                    <property name="text">
+                                                        <string>Expire Date (yyyy-mm-dd)</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item row="1" column="0">
+                                                <widget class="QLineEdit" name="PositionInput" />
+                                            </item>
+                                        </layout>
+                                    </item>
+                                    <item row="1" column="0">
+                                        <widget class="QFrame" name="InputsButtonsLine">
+                                            <property name="frameShape">
+                                                <enum>QFrame::StyledPanel</enum>
+                                            </property>
+                                            <property name="frameShadow">
+                                                <enum>QFrame::Raised</enum>
+                                            </property>
+                                            <layout class="QHBoxLayout" name="horizontalLayout_2">
+                                                <item>
+                                                    <widget class="QPushButton" name="CancelButton">
+                                                        <property name="text">
+                                                            <string>Cancel</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QPushButton" name="CreateButton">
+                                                        <property name="text">
+                                                            <string>Create</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+        </layout>
     </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QFrame" name="BottomFrame">
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-    </widget>
-   </item>
-  </layout>
- </widget>
- <resources/>
- <connections/>
+    <resources />
+    <connections>
+        <connection>
+            <sender>CancelButton</sender>
+            <signal>clicked()</signal>
+            <receiver>StorageWidget</receiver>
+            <slot>CancelButtonClicked()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>206</x>
+                    <y>541</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>376</x>
+                    <y>296</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>CreateButton</sender>
+            <signal>clicked()</signal>
+            <receiver>StorageWidget</receiver>
+            <slot>CreateButtonClicked()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>547</x>
+                    <y>541</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>376</x>
+                    <y>296</y>
+                </hint>
+            </hints>
+        </connection>
+    </connections>
 </ui>
