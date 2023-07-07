@@ -54,9 +54,6 @@ void FinanceSingleFrame::DeleteRequestFinished(QNetworkReply* reply) {
     reply->deleteLater();
 
     QMessageBox msg;
-    if (responseStatus == 403 || responseStatus == 500) {
-        msg.setText("Unauthorized");
-    } else {
-        msg.setText("Finance data deleted successfully");
-    };
+    msg.setText("Please refresh the widget to update it.");
+    msg.exec();
 }

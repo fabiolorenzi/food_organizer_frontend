@@ -89,7 +89,10 @@ void FinancesWidget::PostRequestFinished(QNetworkReply* reply) {
 
     QPushButton* button = this->ui.CreateButton;
     (*button).setText("Create");
-    GetFinancesData();
+
+    QMessageBox msg;
+    msg.setText("Please refresh the widget to update it.");
+    msg.exec();
 }
 
 void FinancesWidget::GetFinancesData() {
