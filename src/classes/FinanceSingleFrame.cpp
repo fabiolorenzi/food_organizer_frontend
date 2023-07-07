@@ -53,8 +53,6 @@ void FinanceSingleFrame::DeleteRequestFinished(QNetworkReply* reply) {
     QVariant responseStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
     reply->deleteLater();
 
-    qDebug() << responseStatus;
-
     QMessageBox msg;
     if (responseStatus == 403 || responseStatus == 500) {
         msg.setText("Unauthorized");
