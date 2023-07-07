@@ -122,8 +122,9 @@ void FinancesWidget::GetRequestFinished(QNetworkReply* reply) {
 
     for (int x {}; x < jsonArray.size(); ++x) {
         QJsonValue singleJson = jsonArray[x];
+        double price = singleJson["price"].toDouble();
         FinanceSingleFrame* singleFinance = new FinanceSingleFrame();
-        singleFinance->InitializeFinanceSingleFrame(singleJson["id"].toInt(), singleJson["title"].toString(), singleJson["description"].toString(), singleJson["price"].toString(), singleJson["shopping_date"].toString());
+        singleFinance->InitializeFinanceSingleFrame(singleJson["id"].toInt(), singleJson["title"].toString(), singleJson["description"].toString(), QString::number(price), singleJson["shopping_date"].toString());
         listArrayLayout->addWidget(singleFinance);
     };
 
